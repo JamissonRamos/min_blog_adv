@@ -1,16 +1,29 @@
 
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
+
+//*****************************************************************/
+  //Pages
+  import Home from './page/home/Home'
+  import About from './page/about/About'
+//*****************************************************************/
 
 function App() {
 
   return (
-    <div className='App'>
+    
+    <>
+      <div className='content'>
 
-      <h1>
-        Mini Blog
-      </h1>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Home/>} ></Route>
+          <Route path='/about' element={<About/>} ></Route>
+        </Routes>
+      </BrowserRouter>
 
-    </div>
+      </div>
+    </>
   )
 }
 
