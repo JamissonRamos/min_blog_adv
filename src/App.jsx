@@ -12,7 +12,7 @@ import './App.css'
   //Pages
   import Home from './page/home/Home'
   import About from './page/about/About'
-import Footer from './components/footer/Footer'
+  import Footer from './components/footer/Footer'
 //*****************************************************************/
 
 function App() {
@@ -20,11 +20,13 @@ function App() {
   return (
     
     <>
-      <div className='content'>
+      <div className='container'>
 
       <BrowserRouter>
 
-        <Header/>
+        <section className='section-header'>
+          <Header/>
+        </section>
 
         <Routes>
           <Route path='/' element={<Home/>} ></Route>
@@ -32,7 +34,7 @@ function App() {
         </Routes>
 
         <Footer/>
-        
+
       </BrowserRouter>
 
       </div>

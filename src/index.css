@@ -1,24 +1,38 @@
-/* :root {
- 
-} */
+  :root {
+
+    /* Cores */
+    --blue-800: #4054B2;
+    --cinza-500: #f2f2f2;
+    --amarelo-800: #F0C002;
+
+    /*  box-shadow */
+    --shadow-800: 0px 4px 6px rgba(0, 0, 0, 0.25);
+
+  }
 
 * 
 {
 
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 
-    overflow: hidden;
-    box-sizing: border-box;
+  overflow: hidden;
+  box-sizing: border-box;
+
+  font-family: 'Roboto';
+  font-style: normal;
+  font-size: 16px;
 }
 
 body  
 {
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
 
   width: 100vw;
   height: 100vh;
 }
+
+
 
 
 
