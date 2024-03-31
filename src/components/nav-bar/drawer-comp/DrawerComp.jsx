@@ -1,6 +1,9 @@
     //React
     import { useState } from "react";
 
+    //React Router
+    import { Link } from "react-router-dom";
+
     //Material UI
     import { Box, Divider, Drawer, IconButton, List, ListItemButton, ListItemIcon, ListItemText, Typography } from "@mui/material"
 
@@ -9,9 +12,7 @@
     import MenuIcon from '@mui/icons-material/Menu';
 
 
-
-
-    const DrawerComp = () => {
+    const DrawerComp = ({pages}) => {
 
         const [openDrawer, setOpenDrawer] = useState(false);
 
@@ -26,7 +27,7 @@
 
                         <List >
 
-                            <ListItemButton sx={{display:'flex', justifyContent:'center'}}>
+                            <ListItemButton sx={{display:'flex', justifyContent:'center'}}  onClick={() => setOpenDrawer(!openDrawer)} component={Link} to={"/"} >
 
                                 <ListItemIcon  >
                                     
@@ -36,26 +37,38 @@
 
                             </ListItemButton>
 
-                            <Divider> Menu </Divider>
+                            <Divider />
 
-                            <ListItemButton sx={{display:'flex', alignItems:'center'}}>
+                            {
+                                pages.map(({id, page, icon, linkPage}) => (
 
-                                <ListItemIcon>
+                                    <>
+                                        <ListItemButton key={id} sx={{display:'flex', alignItems:'center'}} onClick={() => setOpenDrawer(!openDrawer)} component={Link} to={linkPage}>
 
-                                    <GavelIcon sx={{ color: 'var(--cinza-500)', fontSize: "1.5rem" }}/>
+                                            <ListItemIcon sx={{ color: 'var(--cinza-500)', fontSize: "1.5rem" }}>
 
-                                </ListItemIcon>
+                                                {icon}
 
-                                <ListItemText>
-                                    <Typography 
-                                        
-                                        sx={{color: 'var(--cinza-500)', fontSize: '1rem', fontWeight: 'regular'}}>
-                                        {/* {page} */}
-                                        HOME
-                                    </Typography>
-                                </ListItemText>
+                                            </ListItemIcon>
 
-                            </ListItemButton>
+                                            <ListItemText>
+
+                                                <Typography 
+
+                                                    sx={{color: 'var(--cinza-500)', fontSize: '1rem', fontWeight: 'regular'}}>
+
+                                                    {page}
+                                                    
+                                                </Typography>
+
+                                            </ListItemText>
+
+                                        </ListItemButton>
+                                    
+                                    </>
+
+                                ))
+                            }
 
                         </List>
 
