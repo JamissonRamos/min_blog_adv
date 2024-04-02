@@ -2,8 +2,10 @@
 
     /* Cores */
     --blue-800: #4054B2;
+    --cinza-800: #363636;
     --cinza-500: #f2f2f2;
     --amarelo-800: #F0C002;
+    --verde-800: #00BFA6;
 
     /*  box-shadow */
     --shadow-800: 0px 4px 6px rgba(0, 0, 0, 0.25);
@@ -24,12 +26,25 @@
   font-size: 16px;
 }
 
-body  
+html, body, #root
 {
-  /* border: 1px solid blue; */
+  /* border: 1px solid red; */
 
   width: 100vw;
   height: 100vh;
+
+  background-color: var(--cinza-500);
+}
+
+#root
+{
+  /* border: 1px solid blue; */
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: space-between;
+
 }
 
 

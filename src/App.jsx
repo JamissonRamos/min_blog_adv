@@ -20,7 +20,6 @@ function App() {
   return (
     
     <>
-      <div className='container'>
 
       <BrowserRouter>
 
@@ -28,16 +27,22 @@ function App() {
           <Header/>
         </section>
 
-        <Routes>
-          <Route path='/' element={<Home/>} ></Route>
-          <Route path='/about' element={<About/>} ></Route>
-        </Routes>
+        <section className="section-pages-footer">
 
-        <Footer/>
+          
+          <Routes>
+            <Route path='/' element={<Home/>} ></Route>
+            <Route path='/about' element={<About/>} ></Route>
+          </Routes>
+
+          <section  className='section-footer'>
+            <Footer/>
+          </section>
+          
+        </section>
 
       </BrowserRouter>
 
-      </div>
     </>
   )
 }
