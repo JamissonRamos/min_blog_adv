@@ -40,3 +40,13 @@
   background-color: var(--cinza-800);
 
 }
+
+@media screen and (max-width: 900px) {
+  /* Estilos específicos para telas menores que 600px */
+  
+  .section-pages-footer
+  {
+    padding: 0;
+  }
+
+}

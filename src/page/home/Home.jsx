@@ -1,7 +1,16 @@
 
 //CSS
-// import { Avatar, Box, Card, CardMedia } from '@mui/material'
 import styles from './Home.module.css'
+
+//Material UI
+import {Box,  Button,  Card, CardMedia, Typography } from '@mui/material'
+
+//Imagens
+import perfilImage from '../../assets/perfil.jpg'; // Importe a imagem usando o caminho relativo correto
+
+//Icons
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+
 
 const Home = () => {
 
@@ -9,9 +18,120 @@ const Home = () => {
 
         <>
             <div className={styles.container}>
-                home
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis voluptatibus ipsam nemo explicabo voluptas earum optio quod pariatur deserunt numquam, provident nulla exercitationem animi corporis soluta? Ipsa velit itaque, architecto et fugiat id? Quo incidunt vitae placeat excepturi cumque reiciendis id sequi! Est dolorem alias dicta dolorum distinctio molestias expedita placeat fugit eos assumenda cupiditate magni ducimus, obcaecati delectus accusantium! Reiciendis quia maxime possimus ex ullam libero! Quas, aliquid quae perferendis deleniti impedit sequi soluta numquam atque ad provident quaerat recusandae quis ducimus quos non porro sapiente eius illo hic dolorum praesentium? Adipisci vel sunt aliquam consequuntur sit ut quia. Repellat expedita aliquam dignissimos neque impedit officia. Dicta earum et sit eius excepturi ad necessitatibus officiis at eaque temporibus laudantium quasi, in dignissimos recusandae molestias ipsum accusantium! Obcaecati dolore magnam quis debitis exercitationem ipsam iste laudantium vitae necessitatibus! Iste odio nostrum quasi sed excepturi quia similique porro quidem eveniet sequi necessitatibus unde sapiente, incidunt dolor iure. Sapiente, autem libero, est ab consectetur, voluptates quos fuga aspernatur ex voluptatum inventore nam ea maxime officia cupiditate voluptas laborum repellat sunt! Totam saepe, assumenda natus dolores optio laudantium inventore quisquam aliquid ab, soluta aut adipisci voluptatem ducimus magnam, aliquam minus quam eos. Laboriosam eius hic ipsam architecto natus, voluptatibus beatae nisi sint magnam aspernatur. Sit officiis ratione consequatur et facilis autem ut similique voluptates dolore rem hic nostrum harum temporibus dignissimos beatae qui pariatur, provident nemo assumenda cumque. Vel, facilis doloremque perspiciatis reiciendis eos dolor quibusdam, nihil consectetur vero odit explicabo tenetur ex eligendi numquam iure excepturi labore sint esse? Sit fuga explicabo iure sunt rerum adipisci ipsa nesciunt optio! Accusantium suscipit rerum perspiciatis illum aliquam ipsam alias sequi, dolores, vero repudiandae odit omnis! In minus mollitia ipsa eos nam laborum libero. Illum iure eveniet unde magnam, voluptates expedita excepturi numquam deserunt pariatur assumenda enim qui veniam quidem, possimus sunt fugit dolores ab! Iste debitis quas quis molestias, laudantium inventore sunt quos blanditiis expedita id iure aut magni animi quaerat quidem vitae perspiciatis odit, excepturi commodi tempora, sequi fugit. Ullam nesciunt dicta dolorem minus, eligendi tenetur quaerat temporibus molestias doloribus, excepturi dolor distinctio quisquam laboriosam adipisci vero. Provident perferendis quo reprehenderit! Sint molestias cupiditate labore dolore voluptates possimus autem pariatur! Sequi, et illum. Illum ad vitae impedit iusto delectus, quidem porro rem distinctio dolorem tempora, unde, perspiciatis modi debitis vel dignissimos non optio necessitatibus amet praesentium numquam magni. Temporibus earum, excepturi ex quas reprehenderit repellat cumque consequatur rem amet neque placeat vel sequi quod repellendus voluptatum, possimus fugiat ipsa nesciunt. Nemo ducimus alias totam consectetur magnam, facere praesentium aperiam nesciunt vitae officia sequi quibusdam natus voluptatum rerum illum fugit odio esse illo ipsam enim quis voluptates. Nostrum fuga non quibusdam doloremque saepe in temporibus illo, accusamus id dolore, tempora incidunt amet blanditiis. Porro voluptates ab molestias inventore aperiam nesciunt nemo sint voluptas ullam ducimus illum distinctio, magnam recusandae perspiciatis ipsam placeat iure, tempore laborum. Explicabo, vel sunt non provident doloremque id hic aspernatur rem suscipit quis, velit, sed temporibus modi officiis ad dolore voluptatibus nesciunt. Ipsa, iure animi aut doloribus accusamus vitae. Recusandae placeat voluptate sunt laborum itaque? Excepturi laudantium doloremque veniam id quidem perspiciatis neque aperiam! Qui sapiente a rem quam voluptate placeat consectetur quos facilis repellat, deserunt consequuntur, accusantium asperiores quia id maiores, reprehenderit illum officia dolor! Soluta quibusdam possimus praesentium, harum, architecto nisi maiores voluptatibus ipsa nulla necessitatibus omnis cum corporis incidunt error molestias quisquam excepturi eveniet in. Quasi aliquid nostrum consequuntur corporis tempore amet quas voluptatibus labore quod ratione nisi velit quibusdam, nulla quis quae error numquam dicta nobis earum odit maxime? Doloremque reiciendis accusantium consequuntur nam quam fugit, sunt voluptatum officia, ex nulla dolorem debitis beatae quibusdam deserunt maiores voluptatibus. Tempora eveniet magni minus doloremque animi placeat hic, ipsam labore, laborum nemo numquam dolores doloribus, unde officia. Deserunt ipsa, architecto, non natus dolor culpa dolorum optio dicta dolore sapiente enim voluptate molestiae? Voluptatem beatae asperiores dolor autem, assumenda sint omnis, doloribus harum veniam nemo itaque, dolores obcaecati labore exercitationem vel magni doloremque quam id et corporis similique explicabo minima ea? Laudantium, deserunt! Dolores ullam neque aliquam voluptate, cum eum accusamus. Eligendi quam, delectus reiciendis a, omnis architecto provident minus quibusdam, et dolorem error. Cupiditate officiis quod quaerat corporis impedit praesentium quis, non molestiae pariatur veniam animi sit explicabo odit iste ipsum ab adipisci illum ipsam provident obcaecati enim quo totam! Blanditiis facilis corporis veniam voluptas incidunt repellendus, illum repudiandae rem beatae fugiat maxime magnam debitis hic est. In, vero unde. Similique sint laborum reprehenderit, nihil eius obcaecati repellat? Amet quasi eligendi optio necessitatibus, voluptates harum, eveniet aliquid quod quos unde sequi. Aspernatur, id! Ratione inventore voluptates dignissimos est, ipsa, delectus corporis rem quos quasi iure amet aut consequuntur perspiciatis corrupti iste voluptatum ex, tempore quod recusandae animi commodi quibusdam iusto hic dolorem? Doloremque quas autem voluptatem totam, aspernatur voluptate? Harum quas eum voluptate ullam maiores, iusto explicabo asperiores beatae nihil enim. Qui porro temporibus quaerat necessitatibus aspernatur sed quisquam, harum nulla laudantium vel perspiciatis alias eos suscipit excepturi quis, nisi repellendus, velit tempore minus repudiandae recusandae. Nobis sed tenetur optio numquam ea molestias accusamus autem impedit amet est, qui vel sequi fugiat tempore sunt ipsum quo neque quia assumenda cupiditate magnam eaque nihil. Animi quae iste voluptatem aliquid ducimus placeat culpa sit deleniti temporibus corrupti excepturi ad aut assumenda adipisci autem, modi repellendus, facilis earum. Iure, dolorem. Soluta debitis at, alias natus cumque voluptatem. Sed dolores eius repellat saepe, impedit esse perspiciatis quis! Non nemo obcaecati odit voluptatum at architecto, maiores ipsam culpa. Tempore quod dicta ut iure, architecto officiis, animi natus reprehenderit magnam, optio neque libero fuga praesentium rem? Magni aperiam voluptates error, inventore alias dolor cumque dolore consequatur corrupti ab exercitationem? Itaque consectetur adipisci exercitationem dignissimos. Doloremque itaque quibusdam, a labore ab velit quisquam vero, corporis necessitatibus, ducimus ipsum nemo pariatur fuga dignissimos. Minima magni voluptatem iste, consequuntur nihil nulla commodi deleniti dolores explicabo incidunt delectus repellendus non ratione dignissimos optio unde dolorum nam maxime repellat eius ea tenetur. Voluptatum asperiores, rerum delectus voluptatem libero quia sint odit possimus nesciunt eius nam itaque illo. In adipisci, consectetur quo veniam nostrum nihil molestiae vero voluptatum voluptate dicta ipsam sed ea? Facere amet veritatis commodi provident ea esse, nihil saepe, explicabo accusamus necessitatibus modi magnam odio dignissimos libero iusto voluptatum aperiam? Delectus aut assumenda maiores velit repudiandae laboriosam est, explicabo fuga eius distinctio, pariatur enim laborum suscipit, tempore perspiciatis atque soluta commodi facere. Officia mollitia accusamus nostrum totam minima enim, odit perferendis reprehenderit saepe, quos quod rerum quia voluptatem, commodi hic laborum quam! Illo dicta perspiciatis minima laudantium harum quia explicabo, quidem obcaecati doloribus omnis, deserunt ex vel soluta ratione rem tempore fugiat dolore praesentium fugit totam officia pariatur, architecto quisquam rerum. Quae dignissimos sunt rem, quod repudiandae in ut odio perferendis enim nisi accusamus architecto eius accusantium tempora officiis quos quas autem temporibus corporis, unde, itaque laborum fugiat. Hic qui necessitatibus tenetur similique laborum numquam corporis possimus doloribus odio minima provident nihil sed dignissimos nemo, veniam assumenda nobis accusamus laudantium magnam, velit ullam? Molestiae corrupti amet illo neque cumque earum ex, tenetur, quas, quo aperiam voluptatum? Enim, quasi. Deserunt tempore quod nobis voluptatum facilis, velit similique cum deleniti pariatur error quis est autem sapiente commodi necessitatibus soluta.</p>
-                <h1>teste</h1>
+
+                <div className={styles.contentPerfil}>
+
+                    <div className={styles.contentFotoDescription}>
+                        
+                        <div  className={styles.fotoPerfil}>
+
+                            <Card
+                                sx={{ borderRadius: 50, width: '100%', height: '100%',display: 'flex', alignItems: 'center', justifyContent: 'center'  }}>
+
+                                <CardMedia
+                                    sx={{ borderRadius: 50,  width: '96%', height: '96%'    }}
+                                    component="img"
+                                    image={perfilImage}
+                                />
+                                
+                            </Card>
+
+                        </div>
+
+                        <div className={styles.descriptionPerfil}>
+
+                            <div className={styles.itemDescription}>
+
+                                <Typography
+                                    sx={{ color: 'var(--verde-800)',fontWeight: 'bold'}}  
+                                    variant="h6" 
+                                >
+                                    Serviços
+                                </Typography>
+
+
+                                <Typography 
+                                    sx={{ paddingLeft: '.8rem', color: 'var(--cinza-800)', textAlign: 'justify'}}
+                                    paragraph 
+                                    variant='subtitle2'
+                                > 
+                                    Como advogada bem-sucedida, mantenho-me atualizada com as leis e regulamentos, sou especializada em diversas áreas do direito e possuo habilidades excepcionais de negociação e argumentação. Além disso, mantenho a confidencialidade e atuo sempre em conformidade com o código de ética profissional.
+                                </Typography>
+                            </div>
+
+                            <div  className={styles.itemDescription} >
+
+                                <Typography   
+                                    sx={{ color: 'var(--verde-800)',fontWeight: 'bold'}}  
+                                    variant="h6"
+                                >
+                                    Endereço
+                                </Typography>
+
+                                <Typography 
+                                    sx={{ paddingLeft: '.8rem', color: 'var(--cinza-800)', textAlign: 'justify'}}
+                                    paragraph 
+                                    variant='subtitle2'
+                                > 
+                                    Av. Paulista, Bela Vista, São Paulo - SP
+                                </Typography>
+                            </div>
+
+                            <div  className={styles.itemDescription}>
+
+                                <Typography
+                                    sx={{ color: 'var(--verde-800)',fontWeight: 'bold'}}  
+                                    variant="h6"
+                                >
+                                    Contatos
+                                </Typography>
+                                
+                                <div >
+
+                                    <div className={styles.itemDescriptionContatos}> 
+                                        <Typography  sx={{  paddingLeft: '.8rem', color: 'var(--cinza-800)'}} variant='subtitle2'> 
+                                            WhatsApp: 
+                                        </Typography>
+
+                                        <Typography  sx={{ paddingLeft: '.1rem', color: 'var(--cinza-800)'}} variant='subtitle2' > 
+                                            (77) 9 9999 - 9999
+                                        </Typography>
+                                    </div>
+                                    <div className={styles.itemDescriptionContatos}> 
+                                        <Typography  sx={{  paddingLeft: '.8rem', color: 'var(--cinza-800)'}} variant='subtitle2'> 
+                                            Telefone: 
+                                        </Typography>
+
+                                        <Typography  sx={{ paddingLeft: '.2rem', color: 'var(--cinza-800)'}} variant='subtitle2' > 
+                                            (77) 9 3333 - 3333
+                                        </Typography>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div  className={styles.buttonPerfil}>
+
+                        <Button  variant="contained" endIcon={<WhatsAppIcon />}>
+                            <Typography variant="button" >
+                                ENTRAR EM CONTATO
+                            </Typography>   
+                        </Button>
+
+                    </div>
+
+                </div>
+
+                    card-service
+                <Box>
+                    
+                </Box>
+                <Box>home-footer</Box>
+                
+                
             </div>
         </>
     )
