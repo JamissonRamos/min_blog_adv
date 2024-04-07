@@ -3,13 +3,42 @@
 import styles from './Home.module.css'
 
 //Material UI
-import {Box,  Button,  Card, CardMedia, Typography } from '@mui/material'
-
-//Imagens
-import perfilImage from '../../assets/perfil.jpg'; // Importe a imagem usando o caminho relativo correto
+import { Button, Typography } from '@mui/material'
 
 //Icons
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import Cards from '../../components/cards/Cards';
+import Blog from '../../components/blog/Blog';
+import Profile from './Profile';
+
+
+const atuacoes = 
+[
+    {
+    "id": 1,
+    "atuacao": "Direito do Trabalho",
+    "descricao": "Atuando em questões relacionadas a relações de trabalho, rescisões, direitos trabalhistas, entre outros.",
+    "links": "http://www.tst.jus.br/"
+    },
+    {
+    "id": 2,
+    "atuacao": "Direito Tributario",
+    "descricao": "Lidando com questões relacionadas a impostos, planejamento tributário e contencioso fiscal.",
+    "links": "https://www.gov.br/receitafederal/pt-br"
+    },
+    {
+    "id": 3,
+    "atuacao": "Direito Contratual",
+    "descricao": "Assessorando em questões contratuais, comerciais, societárias e de propriedade intelectual.",
+    "links": "https://www.oab.org.br/"
+    },
+    {
+    "id": 4,
+    "atuacao": "Direito Empresarial",
+    "descricao": "Representando empresas em questões comerciais, societárias, contratuais e de propriedade intelectual.",
+    "links": "https://www.aasp.org.br/"
+    }
+]
 
 
 const Home = () => {
@@ -19,99 +48,10 @@ const Home = () => {
         <>
             <div className={styles.container}>
 
+
                 <div className={styles.contentPerfil}>
 
-                    <div className={styles.contentFotoDescription}>
-                        
-                        <div  className={styles.fotoPerfil}>
-
-                            <Card
-                                sx={{ borderRadius: 50, width: '100%', height: '100%',display: 'flex', alignItems: 'center', justifyContent: 'center'  }}>
-
-                                <CardMedia
-                                    sx={{ borderRadius: 50,  width: '96%', height: '96%'    }}
-                                    component="img"
-                                    image={perfilImage}
-                                />
-                                
-                            </Card>
-
-                        </div>
-
-                        <div className={styles.descriptionPerfil}>
-
-                            <div className={styles.itemDescription}>
-
-                                <Typography
-                                    sx={{ color: 'var(--verde-800)',fontWeight: 'bold'}}  
-                                    variant="h6" 
-                                >
-                                    Serviços
-                                </Typography>
-
-
-                                <Typography 
-                                    sx={{ paddingLeft: '.8rem', color: 'var(--cinza-800)', textAlign: 'justify'}}
-                                    paragraph 
-                                    variant='subtitle2'
-                                > 
-                                    Como advogada bem-sucedida, mantenho-me atualizada com as leis e regulamentos, sou especializada em diversas áreas do direito e possuo habilidades excepcionais de negociação e argumentação. Além disso, mantenho a confidencialidade e atuo sempre em conformidade com o código de ética profissional.
-                                </Typography>
-                            </div>
-
-                            <div  className={styles.itemDescription} >
-
-                                <Typography   
-                                    sx={{ color: 'var(--verde-800)',fontWeight: 'bold'}}  
-                                    variant="h6"
-                                >
-                                    Endereço
-                                </Typography>
-
-                                <Typography 
-                                    sx={{ paddingLeft: '.8rem', color: 'var(--cinza-800)', textAlign: 'justify'}}
-                                    paragraph 
-                                    variant='subtitle2'
-                                > 
-                                    Av. Paulista, Bela Vista, São Paulo - SP
-                                </Typography>
-                            </div>
-
-                            <div  className={styles.itemDescription}>
-
-                                <Typography
-                                    sx={{ color: 'var(--verde-800)',fontWeight: 'bold'}}  
-                                    variant="h6"
-                                >
-                                    Contatos
-                                </Typography>
-                                
-                                <div >
-
-                                    <div className={styles.itemDescriptionContatos}> 
-                                        <Typography  sx={{  paddingLeft: '.8rem', color: 'var(--cinza-800)'}} variant='subtitle2'> 
-                                            WhatsApp: 
-                                        </Typography>
-
-                                        <Typography  sx={{ paddingLeft: '.1rem', color: 'var(--cinza-800)'}} variant='subtitle2' > 
-                                            (77) 9 9999 - 9999
-                                        </Typography>
-                                    </div>
-                                    <div className={styles.itemDescriptionContatos}> 
-                                        <Typography  sx={{  paddingLeft: '.8rem', color: 'var(--cinza-800)'}} variant='subtitle2'> 
-                                            Telefone: 
-                                        </Typography>
-
-                                        <Typography  sx={{ paddingLeft: '.2rem', color: 'var(--cinza-800)'}} variant='subtitle2' > 
-                                            (77) 9 3333 - 3333
-                                        </Typography>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
+                    <Profile />
 
                     <div  className={styles.buttonPerfil}>
 
@@ -125,11 +65,19 @@ const Home = () => {
 
                 </div>
 
-                    card-service
-                <Box>
+                <div className={styles.contentService}>
+
+                    <Cards list={atuacoes} />
+
+                </div>
+
+                <div className={styles.blog}>
+
+                    <Blog />
                     
-                </Box>
-                <Box>home-footer</Box>
+                </div>
+
+                <div>home-footer</div>
                 
                 
             </div>

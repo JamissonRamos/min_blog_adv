@@ -1,0 +1,85 @@
+
+.contentFotoDescription
+{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    padding: 1rem
+}
+
+.fotoPerfil
+{
+    width: 300px;
+    height: 300px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0px;
+    isolation: isolate;
+
+    border: 4px solid var( --amarelo-800);
+    border-radius: 50%;
+
+    box-shadow: var(--shadow-800);
+}
+
+.descriptionPerfil
+{
+    width: 50%;
+    height: 100%;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-evenly;
+    gap: 2px;
+}
+
+.itemDescription
+{
+    /* border: 1px solid red; */
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.itemDescriptionContatos
+{
+    display: flex;
+    gap: 8px;
+}
+
+@media screen and (max-width: 1024px) {
+    /* Estilos específicos para telas menores que 600px */
+
+    .fotoPerfil
+    {
+        width: 250px;
+        height: 250px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    /* Estilos específicos para telas menores que 600px */
+    
+    .contentFotoDescription
+    {
+        flex-direction: column;
+
+        padding: 0;
+    }
+
+    .fotoPerfil
+    {
+        width: 180px;
+        height: 180px;
+    }
+
+    .descriptionPerfil
+    {
+        width: 100%;
+    }
+}
