@@ -21,11 +21,15 @@
 .section-pages-footer
 {
   width: 100%;
-  height: calc(100% - 3rem); 
+  height: calc(100% - 4rem); 
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 
   padding-top: 2rem;
 
-  overflow: auto;
+  overflow-y: auto;
 
 }
 

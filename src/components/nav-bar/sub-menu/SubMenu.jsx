@@ -30,7 +30,9 @@ const SubMenu = () => {
     const pagesSubMenu = [
         {id: 1, page: 'NOVO POST', icon: <AddCircleIcon/>, linkPage: '/'},
         {id: 2, page: 'DASHBOARD', icon: <DashboardCustomizeIcon/>, linkPage: '/'},
-        {id: 3, page: 'SAIR', icon: <LogoutIcon/>, linkPage: '/'}
+        {id: 3, page: 'SAIR', icon: <LogoutIcon/>, linkPage: '/'},
+        {id: 4, page: 'LOGIN', icon: <LogoutIcon/>, linkPage: '/login'},
+        {id: 5, page: 'REGISTRAR', icon: <AddCircleIcon/>, linkPage: '/register'}
     ];
 
     return ( 

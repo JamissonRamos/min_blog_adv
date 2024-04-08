@@ -13,6 +13,8 @@ import './App.css'
   import Home from './page/home/Home'
   import About from './page/about/About'
   import Footer from './components/footer/Footer'
+import Login from './page/login/Login'
+import Register from './page/register/Register'
 //*****************************************************************/
 
 function App() {
@@ -33,6 +35,8 @@ function App() {
           <Routes>
             <Route path='/' element={<Home/>} ></Route>
             <Route path='/about' element={<About/>} ></Route>
+            <Route path='/login' element={<Login/>} ></Route>
+            <Route path='/register' element={<Register/>} ></Route>
           </Routes>
 
           <section  className='section-footer'>
