@@ -1,4 +1,7 @@
 
+    //Hooks
+    import { useAuthValue } from "../../../context/AuthContext";
+
     //Material UI
     // Button, Tab, Tabs, Toolbar, Typography, useMediaQuery, useTheme,
     import { AppBar, Typography, useMediaQuery, useTheme } from "@mui/material";
@@ -19,6 +22,7 @@
     import MenuComp from "../menu-comp/MenuComp";
 
     const Header = () => {
+        const user = useAuthValue();
 
         // const [value, setValue] = useState(0); //Monitorando os estados do btns do menu;
         const theme = useTheme();
@@ -47,7 +51,7 @@
                                 <Typography 
                                     textAlign="center" 
                                     sx={{color: 'var(--cinza-500)', fontSize: '1rem', fontWeight: 'bold'}}>
-                                            Allana
+                                            {user.displayName}
                                 </Typography>
 
                             </>

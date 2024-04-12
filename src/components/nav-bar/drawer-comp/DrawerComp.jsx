@@ -27,7 +27,7 @@
 
                         <List >
 
-                            <ListItemButton sx={{display:'flex', justifyContent:'center'}}  onClick={() => setOpenDrawer(!openDrawer)} component={Link} to={"/"} >
+                            <Box sx={{display:'flex', justifyContent:'center'}}  onClick={() => setOpenDrawer(!openDrawer)} component={Link} to={"/"} >
 
                                 <ListItemIcon  >
                                     
@@ -35,7 +35,7 @@
 
                                 </ListItemIcon>
 
-                            </ListItemButton>
+                            </Box>
 
                             <Divider />
 

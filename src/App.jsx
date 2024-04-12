@@ -1,7 +1,22 @@
-
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+//Css
 import './App.css'
 
+//Material UI
+// import { CircularProgress, Backdrop } from '@mui/material';
+
+  //Reat router
+  import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+
+  //FireBase
+  import { onAuthStateChanged } from 'firebase/auth'
+
+  //Hooks
+  import { useEffect, useState } from 'react'
+  import { useAuthentication } from './hooks/useAuthentication';
+
+
+  //Context
+  import { AuthProvider } from './context/AuthContext';
 
 //*****************************************************************/
   //Components
@@ -13,40 +28,67 @@ import './App.css'
   import Home from './page/home/Home'
   import About from './page/about/About'
   import Footer from './components/footer/Footer'
-import Login from './page/login/Login'
-import Register from './page/register/Register'
+  import Login from './page/login/Login'
+  import Register from './page/register/Register'
+  import Dashboard from './page/dashboard/Dashboard'
+  import CreatePost from './page/create-post/CreatePost'
 //*****************************************************************/
 
 function App() {
+  const [user, setUser] = useState(undefined); //Vai receber o valor do usuário;
+
+  const {auth} = useAuthentication();
+
+  const loadingUser = user === undefined
+
+  useEffect(() => {
+
+      onAuthStateChanged(auth, (user) => {
+
+        setUser(user)
+
+      })
+
+  },[auth])
+
+  if(loadingUser){
+
+    return (
+        <p>Caregando...</p>
+    )
+  }
+
 
   return (
     
     <>
+      <AuthProvider value={user}>
+        <BrowserRouter>
 
-      <BrowserRouter>
-
-        <section className='section-header'>
-          <Header/>
-        </section>
-
-        <section className="section-pages-footer">
-
-          
-          <Routes>
-            <Route path='/' element={<Home/>} ></Route>
-            <Route path='/about' element={<About/>} ></Route>
-            <Route path='/login' element={<Login/>} ></Route>
-            <Route path='/register' element={<Register/>} ></Route>
-          </Routes>
-
-          <section  className='section-footer'>
-            <Footer/>
+          <section className='section-header'>
+            <Header/>
           </section>
-          
-        </section>
 
-      </BrowserRouter>
+          <section className="section-pages-footer">
 
+            
+            <Routes>
+              <Route path='/' element={<Home/>} ></Route>
+              <Route path='/about' element={<About/>} ></Route>
+              <Route path='/login' element={ !user ? <Login/> : <Navigate to="/" /> } ></Route>
+              <Route path='/register' element={ !user ? <Register/> : <Navigate to="/" />  } ></Route>
+              <Route path='/dashboard' element={user ? <Dashboard/> : <Navigate to="/login" /> } ></Route>
+              <Route path='/post/createPost' element={user ? <CreatePost/> : <Navigate to="/login" /> } ></Route>
+            </Routes>
+
+            <section  className='section-footer'>
+              <Footer/>
+            </section>
+            
+          </section>
+
+        </BrowserRouter>
+      </AuthProvider>
     </>
   )
 }

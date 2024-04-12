@@ -1,6 +1,11 @@
 //React
 import { useState } from "react";
 
+//Hooks
+// import { useAuthentication } from '../../../hooks/useAuthentication'
+
+import { useAuthValue } from "../../../context/AuthContext";
+
 //React Router
 import { Link } from "react-router-dom";
 
@@ -19,6 +24,11 @@ import perfilImage from '../../../assets/perfil.jpg'; // Importe a imagem usando
 const SubMenu = () => {
     const [anchorEl, setAnchorEl] = useState(null); //Monitorar o menu do avatar;
 
+    //Passando usuário logado
+    const user = useAuthValue();
+
+    console.log(user)
+
     const handleClick = (e) => {
         setAnchorEl(e.currentTarget);
     };
@@ -28,11 +38,13 @@ const SubMenu = () => {
     };
 
     const pagesSubMenu = [
-        {id: 1, page: 'NOVO POST', icon: <AddCircleIcon/>, linkPage: '/'},
-        {id: 2, page: 'DASHBOARD', icon: <DashboardCustomizeIcon/>, linkPage: '/'},
-        {id: 3, page: 'SAIR', icon: <LogoutIcon/>, linkPage: '/'},
-        {id: 4, page: 'LOGIN', icon: <LogoutIcon/>, linkPage: '/login'},
-        {id: 5, page: 'REGISTRAR', icon: <AddCircleIcon/>, linkPage: '/register'}
+        // visibliPageUser: indica se a pagina pode ou não ser mostrada se user não tiver logado;
+        // linkPage coloca o link da pagina a ser mostrado;
+        {id: 1, page: 'NOVO POST', icon: <AddCircleIcon/>, linkPage: '/createPost', visibliPageUser: true}, 
+        {id: 2, page: 'DASHBOARD', icon: <DashboardCustomizeIcon/>, linkPage: '/dashboard', visibliPageUser: true},
+        {id: 3, page: 'SAIR', icon: <LogoutIcon/>, linkPage: '/', visibliPageUser: true},
+        {id: 4, page: 'LOGIN', icon: <LogoutIcon/>, linkPage: '/login', visibliPageUser: false},
+        {id: 5, page: 'REGISTRAR', icon: <AddCircleIcon/>, linkPage: '/register', visibliPageUser: false}
     ];
 
     return ( 
@@ -60,47 +72,52 @@ const SubMenu = () => {
                 }}
             >
                 {
-                    pagesSubMenu.map(({id, page, icon, linkPage}) => (
+                    pagesSubMenu.map(({id, page, icon, linkPage, visibliPageUser}) => (
+                        
+                    (user ? visibliPageUser : !user && !visibliPageUser) ? (
 
-                        page !== "SAIR" ? 
+                            page !== "SAIR" ? 
 
                             <MenuItem key={id} onClick={handleClose}  component={Link} to={linkPage} > 
-
+    
                                 <ListItemIcon  sx={{color: 'var(--blue-800)', fontWeight: 'bold'}}>
-
+    
                                     {icon} 
-
+    
                                 </ListItemIcon>
-
+    
                                 <Typography 
                                     textAlign="center" 
                                     sx={{color: 'var(--blue-800)', fontSize: '.8rem', fontWeight: 'bold'}}>
                                     {page}
                                 </Typography>
-
+    
                             </MenuItem> 
                             :
                             <Box key={id} sx={{paddingY: '.8rem'}}>
-
+    
                                 <Divider/>
             
                                 <MenuItem key={id} onClick={handleClose}  sx={{paddingY: '.8rem'}} component={Link} to={linkPage}> 
-
+    
                                     <ListItemIcon>
                                         <LogoutIcon  sx={{color: 'var(--blue-800)', fontWeight: 'bold'}}/> 
                                     </ListItemIcon>
-
+    
                                     <Typography 
                                         textAlign="center" 
                                         sx={{color: 'var(--blue-800)', fontSize: '.8rem', fontWeight: 'bold'}}>
                                         {page}
                                     </Typography>
-
+    
                                 </MenuItem>
-
+    
                             </Box>
+                        ) : null
+                        
                     ))
-                }
+                        
+                }       
 
             </Menu>
         </>
