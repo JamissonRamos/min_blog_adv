@@ -111,6 +111,7 @@ const Register = () => {
                         </Stack>
                     )
                 }
+
                 {
                     errorRequest && (
 
@@ -135,11 +136,11 @@ const Register = () => {
                     </Typography>
                 </div>
 
+
                 <form className={styles.form} onSubmit={handleSubmit(handleSubmitData)}>
 
                     {
                         componentsForm.map(({id, typeComponent, nameComponent, label, placeholder}) => (
-
                             <div className={styles.boxInput} key={id}>
 
                                 <div className={styles.boxContainerInput}>

@@ -45,8 +45,8 @@ const SubMenu = () => {
         {id: 1, page: 'NOVO POST', icon: <AddCircleIcon/>, linkPage: '/createPost', visibliPageUser: true}, 
         {id: 2, page: 'DASHBOARD', icon: <DashboardCustomizeIcon/>, linkPage: '/dashboard', visibliPageUser: true},
         {id: 3, page: 'SAIR', icon: <LogoutIcon/>, linkPage: '/', visibliPageUser: true},
-        {id: 4, page: 'LOGIN', icon: <LogoutIcon/>, linkPage: '/login', visibliPageUser: false},
-        {id: 5, page: 'REGISTRAR', icon: <AddCircleIcon/>, linkPage: '/register', visibliPageUser: false}
+        {id: 4, page: 'REGISTRAR', icon: <AddCircleIcon/>, linkPage: '/register', visibliPageUser: false},
+        {id: 5, page: 'LOGIN', icon: <LogoutIcon/>, linkPage: '/login', visibliPageUser: false},
     ];
 
     return ( 
