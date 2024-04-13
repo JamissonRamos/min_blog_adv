@@ -1,26 +1,60 @@
-
 //React
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
+//UseForm
+import { useForm } from 'react-hook-form';
+
+//Yup
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as Yup from 'yup';
 
 //CSS
 import styles from './Register.module.css'
 
 //Material UI
-import { Button, Typography,TextField, InputAdornment, IconButton } from '@mui/material';
-// import InputAdornment from '@mui/material/InputAdornment';
-// import IconButton from '@mui/material/IconButton';
+import { Button, Typography,TextField, InputAdornment, IconButton, Alert, Stack, LinearProgress } from '@mui/material';
 
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
+//Hooks
+import { useAuthentication } from '../../hooks/useAuthentication'
+
+
+const schema = Yup.object().shape({
+    displayName:Yup.string().min(3, 'Campo tem quer ter no mínimo 3 caracteres').required('Campo Obrigatório'),
+    email:Yup.string().min(3, 'Campo tem quer ter no mínimo 3 caracteres').required('Campo Obrigatório'),
+    password:Yup.string().min(6, 'Campo tem quer ter no mínimo 6 caracteres').required('Campo Obrigatório'),
+    confirmPassword:Yup.string().min(6, 'Campo tem quer ter no mínimo 6 caracteres').required('Campo Obrigatório').oneOf([Yup.ref('password'), null], 'Senha não conferir'),
+})
+
 const componentsForm = [
-    {id:1, typeComponent:'text', nameComponent:'nome', placeholder:'Digite seu nome', label: 'Nome'},
-    {id:2, typeComponent:'text', nameComponent:'email', placeholder:'Digite seu email', label: 'Email'},
+    {id:1, typeComponent:'text', nameComponent:'displayName', placeholder:'Digite seu nome', label: 'Nome'},
+    {id:2, typeComponent:'email', nameComponent:'email', placeholder:'Digite seu email', label: 'Email'},
     {id:3, typeComponent:'password', nameComponent:'password', placeholder:'Insira sua senha', label: 'Senha'},
     {id:4, typeComponent:'password', nameComponent:'confirmPassword', placeholder:'Confirme sua senha', label: 'Confirma Senha'}
 ]
 
 const Register = () => {
+
+    const { createUser, error: authError } = useAuthentication();
+    const [errorRequest, setErrorRequest] = useState('');
+
+    const { register, handleSubmit, formState, reset } = useForm({
+        mode: 'all',
+        resolver: yupResolver(schema),
+        defaultValues: {
+            displayName: '',
+            email: '',
+            password: '',
+            confirmPassword: ''
+        }
+    });
+
+    const { errors, isSubmitting } = formState
+
+    console.log('erros', errors);
+    console.log('isSubmitting', isSubmitting);
 
     const [visible, setVisible] = useState(false);
 
@@ -42,10 +76,48 @@ const Register = () => {
         )
     };
 
+    const handleSubmitData = async (data) => 
+    {
+        console.log("handleSubmitData",data); // Faça algo com os dados do formulário
+
+        const res = await createUser(data)
+
+        console.log(res);
+
+        reset();
+    };
+
+    useEffect(() => {
+        
+        if (authError) {
+            
+            setErrorRequest(authError);
+        }
+
+    }, [authError]);
+
     return (
 
         <>
             <div className={styles.container}>
+
+                {
+                    isSubmitting && (
+
+                        <Stack sx={{ width: '100%', color: 'grey.500' }} spacing={2}>
+
+                            <LinearProgress color="success" />
+                
+                        </Stack>
+                    )
+                }
+                {
+                    errorRequest && (
+
+                        <Alert  sx={{width: '100%', padding: '0 .4rem', m: 0, border: 'none', fontSize: '0.2rem'}} variant="outlined" severity="error" >{errorRequest}</Alert>
+
+                    )
+                }
 
                 <div>
                     <Typography
@@ -63,53 +135,52 @@ const Register = () => {
                     </Typography>
                 </div>
 
-                <form className={styles.form}>
-
+                <form className={styles.form} onSubmit={handleSubmit(handleSubmitData)}>
 
                     {
                         componentsForm.map(({id, typeComponent, nameComponent, label, placeholder}) => (
 
-                            typeComponent === 'text' ? (
+                            <div className={styles.boxInput} key={id}>
 
-                                <TextField 
-                                    key={id}
-                                    sx={{
-                                        '& > :not(style)': { m: 1, width: '85%' },
-                                    }}
-                                    id={nameComponent}
-                                    label={label}
-                                    placeholder={placeholder}
-                                    variant="outlined"
-                                    required
-                                />
+                                <div className={styles.boxContainerInput}>
+                                    
+                                    <TextField 
+                                        sx={{
+                                            '& > :not(style)': {  m: 1, maxWidth: '94%', maxHeight: '100%' },
+                                        }}
+                                        fullWidth 
+                                        id={nameComponent}
+                                        label={label}
+                                        placeholder={placeholder}
+                                        type={typeComponent != 'password' ? typeComponent : visible ?  "text" : "password"}
+                                        InputProps={typeComponent === 'password' && {
+                                            endAdornment: (
+                                            <EndAdornment visible={visible} setVisible={setVisible}/>
+                                            )
+                                        }}
+                                        variant="outlined"
+                                        {... register(nameComponent)}
+                                    />
+                                </div>
 
-                            ) : (
-                                <TextField
-                                    key={id}
-                                    sx={{
-                                    '& > :not(style)': { m: 1, width: '85%' },
-                                    }}
-                                    id={nameComponent}
-                                    label={label}
-                                    placeholder={placeholder}
-                                    variant="outlined"
-                                    required
-                                    type={ visible ?  "text" : "password"} 
-                                    InputProps={{
-                                        endAdornment: (
-                                        <EndAdornment visible={visible} setVisible={setVisible}/>
-                                        ),
-                                    }}
-                                />
-                            )
+                                <div className={styles.boxErro}>
+                                    {errors[nameComponent] && (
+                                        <Alert   sx={{width: '100%', padding: '0 .4rem', m: 0, border: 'none', fontSize: '0.2rem'}} variant="outlined" severity="error" >{errors[nameComponent].message}</Alert>
+                                    )}
+                                </div>
+
+                            </div>
                         ))
                     }
-
 
                     <div className={styles.button}>
                         <Button
                             sx={{width: '200px'}}
-                        variant='contained'> Cadastrar </Button>
+                            variant='contained'
+                            type='submit'
+                            disabled={isSubmitting}
+                        > {isSubmitting ? 'enviando...' : 'Cadastrar'}     
+                        </Button>
                     </div>
                 </form>
 
@@ -120,45 +191,3 @@ const Register = () => {
 }
 
 export default Register
-
-{/* 
-                    <label className={styles.label} >
-                        <span>Nome:</span>
-                        <input
-                            className={styles.input}
-                            type="text"
-                            name='displayName'
-                            required
-                            placeholder='Digite seu nome'
-                        />
-                    </label>
-                    <label className={styles.label} >
-                        <span>Email:</span>
-                        <input 
-                            className={styles.input}
-                            type="email"
-                            name='email'
-                            required
-                            placeholder='Digite seu email'
-                        />
-                    </label>
-                    <label className={styles.label} >
-                        <span>Senha:</span>
-                        <input 
-                            className={styles.input}
-                            type="password"
-                            name='password'
-                            required
-                            placeholder='Insira sua senha'
-                        />
-                    </label>
-                    <label className={styles.label} >
-                        <span>Confirmação da Senha:</span>
-                        <input 
-                            className={styles.input}
-                            type="password"
-                            name='confirmPassword'
-                            required
-                            placeholder='Confirme sua senha'
-                        />
-                    </label> */}

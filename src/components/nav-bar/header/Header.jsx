@@ -51,7 +51,7 @@
                                 <Typography 
                                     textAlign="center" 
                                     sx={{color: 'var(--cinza-500)', fontSize: '1rem', fontWeight: 'bold'}}>
-                                            {user.displayName}
+                                            {user && user.displayName}
                                 </Typography>
 
                             </>

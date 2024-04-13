@@ -2,8 +2,7 @@
 import { useState } from "react";
 
 //Hooks
-// import { useAuthentication } from '../../../hooks/useAuthentication'
-
+import { useAuthentication } from '../../../hooks/useAuthentication'
 import { useAuthValue } from "../../../context/AuthContext";
 
 //React Router
@@ -26,6 +25,9 @@ const SubMenu = () => {
 
     //Passando usuário logado
     const user = useAuthValue();
+
+    //Função para fazer o logout sing in do sistema
+    const { logout } = useAuthentication();
 
     console.log(user)
 
@@ -78,42 +80,42 @@ const SubMenu = () => {
 
                             page !== "SAIR" ? 
 
-                            <MenuItem key={id} onClick={handleClose}  component={Link} to={linkPage} > 
-    
-                                <ListItemIcon  sx={{color: 'var(--blue-800)', fontWeight: 'bold'}}>
-    
-                                    {icon} 
-    
-                                </ListItemIcon>
-    
-                                <Typography 
-                                    textAlign="center" 
-                                    sx={{color: 'var(--blue-800)', fontSize: '.8rem', fontWeight: 'bold'}}>
-                                    {page}
-                                </Typography>
-    
-                            </MenuItem> 
-                            :
-                            <Box key={id} sx={{paddingY: '.8rem'}}>
-    
-                                <Divider/>
-            
-                                <MenuItem key={id} onClick={handleClose}  sx={{paddingY: '.8rem'}} component={Link} to={linkPage}> 
-    
-                                    <ListItemIcon>
-                                        <LogoutIcon  sx={{color: 'var(--blue-800)', fontWeight: 'bold'}}/> 
+                                <MenuItem key={id} onClick={handleClose}  component={Link} to={linkPage} > 
+        
+                                    <ListItemIcon  sx={{color: 'var(--blue-800)', fontWeight: 'bold'}}>
+        
+                                        {icon} 
+        
                                     </ListItemIcon>
-    
+        
                                     <Typography 
                                         textAlign="center" 
                                         sx={{color: 'var(--blue-800)', fontSize: '.8rem', fontWeight: 'bold'}}>
                                         {page}
                                     </Typography>
-    
-                                </MenuItem>
-    
-                            </Box>
-                        ) : null
+        
+                                </MenuItem> 
+                                :
+                                <Box key={id} sx={{paddingY: '.8rem'}}>
+        
+                                    <Divider/>
+                
+                                    <MenuItem key={id} onClick={() => {handleClose(); logout();}}  sx={{paddingY: '.8rem'}} component={Link} to={linkPage}> 
+        
+                                        <ListItemIcon>
+                                            <LogoutIcon  sx={{color: 'var(--blue-800)', fontWeight: 'bold'}}/> 
+                                        </ListItemIcon>
+        
+                                        <Typography 
+                                            textAlign="center" 
+                                            sx={{color: 'var(--blue-800)', fontSize: '.8rem', fontWeight: 'bold'}}>
+                                            {page}
+                                        </Typography>
+        
+                                    </MenuItem>
+        
+                                </Box>
+                            ) : null
                         
                     ))
                         
