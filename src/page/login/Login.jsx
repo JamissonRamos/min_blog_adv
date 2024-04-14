@@ -13,7 +13,7 @@ import { useForm } from 'react-hook-form'; //Biblioteca de form
 import { useAuthentication } from '../../hooks/useAuthentication'; //Autenticação do sistema
 
 //Material UI
-import { Button, Typography,TextField, InputAdornment, IconButton, Alert, Stack, LinearProgress } from '@mui/material';
+import { Button,TextField, InputAdornment, IconButton, Alert } from '@mui/material';
 
 //Components
 import LineProgress from '../../components/line-progress/LineProgress'
@@ -41,7 +41,7 @@ const Login = () => {
     //Ativar e desativar icon de senha
     const [visible, setVisible] = useState(false);
     //Autenticação 
-    const { createUser, error: authError } = useAuthentication();
+    const { login, error: authError } = useAuthentication();
     const [errorRequest, setErrorRequest] = useState('');
 
     //Components do react-hook-form
@@ -49,10 +49,8 @@ const Login = () => {
         mode: 'all',
         resolver: yupResolver(schema),
         defaultValues: {
-            displayName: '',
             email: '',
             password: '',
-            confirmPassword: ''
         }
     });
 
@@ -64,7 +62,7 @@ const Login = () => {
     {
         console.log("handleSubmitData",data); // Faça algo com os dados do formulário
 
-        const res = await createUser(data)
+        const res = await login(data)
 
         console.log(res);
 

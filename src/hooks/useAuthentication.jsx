@@ -3,9 +3,12 @@ import { db } from '../firebase/Config';
 
 import {
     getAuth,
+    //Criar usser no firebase
     createUserWithEmailAndPassword,
-    // signInWithEmailAndPassword,
+    //Fazer login no firebase
+    signInWithEmailAndPassword,
     updateProfile,
+    //Sair do login do firebase
     signOut,
     
 } from 'firebase/auth';
@@ -74,7 +77,7 @@ export const useAuthentication = () => {
         // setLoading(false)
     }
 
-    //Logout sin in
+    //Logout sign in
     const logout = () => {
 
         checkIfIsCancelled();
@@ -82,11 +85,47 @@ export const useAuthentication = () => {
         signOut(auth)
     }
 
+    //Login no sistema
+    const login = async (data) => {
+        console.log(data)
+        checkIfIsCancelled();
+        setError('')
+
+        try {
+
+    
+            await signInWithEmailAndPassword(auth, data.email, data.password)
+
+            
+        } catch (error) {
+            console.log(error.message)
+            let systemErrorMessage = "";
+
+            if (error.message.includes('user-not-found')){
+
+                systemErrorMessage = "Usuário não encontrado.";
+
+            }else if (error.message.includes('wrong-password')){
+
+                systemErrorMessage = "A senha incorreta.";
+
+            }else if (error.message.includes('invalid-credential')){
+
+                systemErrorMessage = "Seu email ou senha está incorreta.";
+
+            }else{
+                systemErrorMessage = "Todo mundo erra e dessa vez foi agente. Tente mais tarde.";
+            }
+
+            setError(systemErrorMessage)
+        }
+    }
+
 
     useEffect(() => {
         return () => setCancelled(true)
     }, [])
 
-    return{ auth, createUser, error, logout}
+    return{ auth, createUser, error, logout, login}
 
 }

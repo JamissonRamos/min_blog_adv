@@ -2,9 +2,8 @@
 //Material UI
 import { Typography } from '@mui/material';
 
-
 const DescriptionForm = ({children}) => {
-    console.log (children)
+
     return (
 
         <>
