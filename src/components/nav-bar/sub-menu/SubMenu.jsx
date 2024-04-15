@@ -42,7 +42,7 @@ const SubMenu = () => {
     const pagesSubMenu = [
         // visibliPageUser: indica se a pagina pode ou não ser mostrada se user não tiver logado;
         // linkPage coloca o link da pagina a ser mostrado;
-        {id: 1, page: 'NOVO POST', icon: <AddCircleIcon/>, linkPage: '/createPost', visibliPageUser: true}, 
+        {id: 1, page: 'NOVO POST', icon: <AddCircleIcon/>, linkPage: '/post/createPost', visibliPageUser: true}, 
         {id: 2, page: 'DASHBOARD', icon: <DashboardCustomizeIcon/>, linkPage: '/dashboard', visibliPageUser: true},
         {id: 3, page: 'SAIR', icon: <LogoutIcon/>, linkPage: '/', visibliPageUser: true},
         {id: 4, page: 'REGISTRAR', icon: <AddCircleIcon/>, linkPage: '/register', visibliPageUser: false},
