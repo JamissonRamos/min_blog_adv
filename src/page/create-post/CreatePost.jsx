@@ -13,10 +13,16 @@ import * as Yup from 'yup';
 import styles from './CreatePost.module.css';
 
 //Material UI
-import { Button, Typography,TextField, Alert, Stack, LinearProgress   } from '@mui/material';
-import Textarea from '@mui/joy/Textarea';
+import { Button, Alert } from '@mui/material';
+
 //Hooks
-// import { useAuthentication } from '../../hooks/useAuthentication'
+// import { useAuthentication } from '../../hooks/useAuthentication';
+
+//Components
+import LineProgress from '../../components/line-progress/LineProgress'
+import TitleForm from '../../components/components-form/TitleForm';
+import DescriptionForm from '../../components/components-form/DescriptionForm';
+import InputText from '../../components/components-form/InputText';
 
 const schema = Yup.object().shape({
     title:Yup.string().min(3, 'Campo tem quer ter no mínimo 3 caracteres').required('Campo Obrigatório'),
@@ -28,8 +34,8 @@ const schema = Yup.object().shape({
 const componentsForm = [
     {id:1, typeComponent:'text', nameComponent:'title', placeholder:'Digite um titulo', label: 'Título'},
     {id:2, typeComponent:'text', nameComponent:'image',  placeholder:'Insira um imagem que represente seu post', label: 'Imagem'},
-    {id:3, typeComponent:'area ', nameComponent:'body', placeholder:'Insira o  conteúdo do post', label: 'Conteúdo'},
-    {id:4, typeComponent:'text', nameComponent:'tags', placeholder:'', label: ''}
+    {id:3, typeComponent:'textArea', nameComponent:'body', placeholder:'Insira o  conteúdo do post', label: 'Conteúdo'},
+    {id:4, typeComponent:'text', nameComponent:'tags', placeholder:'Coloque suas tegs separadas por ; ', label: 'Tags'}
 ]
 
 const CreatePost = () => {
@@ -79,16 +85,7 @@ const CreatePost = () => {
 
             <div className={styles.container}>
 
-                {
-                    isSubmitting && (
-
-                        <Stack sx={{ width: '100%', color: 'grey.500' }} spacing={2}>
-
-                        <LinearProgress color="success" />
-
-                        </Stack>
-                    )
-                }
+                { isSubmitting && ( <LineProgress/> ) }
 
                 {/* {
                     errorRequest && (
@@ -99,21 +96,15 @@ const CreatePost = () => {
                 } */}
 
                 <div>
-                    <Typography
-                        sx={{color: 'var(--verde-800)', fontWeight: 'bold'}}
-                        variant='h4'
-                    >
+                    <TitleForm>
                         Registrar
-                    </Typography>
+                    </TitleForm>
 
-                    <Typography
-                        sx={{color: 'var(--cinza-800)'}}
-                        paragraph
-                    >
+                    <DescriptionForm>
                         Cadastre-se para postar
-                    </Typography>
-                </div>
+                    </DescriptionForm>
 
+                </div>
 
                 <form className={styles.form} onSubmit={handleSubmit(handleSubmitData)}>
 
@@ -123,37 +114,20 @@ const CreatePost = () => {
                             <div className={styles.boxInput} key={id}>
 
                                 <div className={styles.boxContainerInput}>
+                                    
+                                    <div className={styles.inputTex}>
 
-                                    {typeComponent === 'text' ?
-
-                                        <TextField 
-                                            sx={{
-                                            '& > :not(style)': {  m: 1, maxWidth: '94%', maxHeight: '100%' },
-                                            }}
-                                            
-                                            fullWidth 
-                                            id={nameComponent}
+                                        <InputText 
+                                            nameComponent={nameComponent}
                                             label={label}
                                             placeholder={placeholder}
-                                            type={typeComponent}
-                                            // variant="outlined"
-                                            {... register(nameComponent)}
+                                            typeComponent={typeComponent}
+                                            register={register} // Passando o register para o componente InputText {... register(nameComponent)}
                                         />
-                                    :
-                                        <div className={styles.textArea}>
 
-                                            <Textarea 
-                                                size="lg" 
-                                                id={nameComponent}
-                                                label={label}
-                                                placeholder={placeholder}
-                                                type={typeComponent}
-                                                variant="outlined"
-                                                {... register(nameComponent)} 
-                                            />
-                                                
-                                        </div>
-                                    }
+                                    </div>
+                                    
+
                                 </div>
 
                                 <div className={styles.boxErro}>
