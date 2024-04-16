@@ -5,10 +5,6 @@ import { TextField } from '@mui/material';
 
 const InputText = ({nameComponent,label,placeholder,typeComponent, register}) => {
 
-
-console.log('tipo: ', typeComponent)
-
-
     return (
 
         <>

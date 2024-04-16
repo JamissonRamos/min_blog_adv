@@ -15,8 +15,11 @@ import styles from './CreatePost.module.css';
 //Material UI
 import { Button, Alert } from '@mui/material';
 
+//Contexto
+import { useAuthValue } from '../../context/AuthContext'
+
 //Hooks
-// import { useAuthentication } from '../../hooks/useAuthentication';
+import { useInsertDocuments } from '../../hooks/useInsertDocuments';
 
 //Components
 import LineProgress from '../../components/line-progress/LineProgress'
@@ -40,7 +43,10 @@ const componentsForm = [
 
 const CreatePost = () => {
 
-    // const { createUser, error: authError } = useAuthentication();
+    const { insertDocument, response } = useInsertDocuments("posts"); // error: authError
+
+    const user = useAuthValue();
+
     // const [errorRequest, setErrorRequest] = useState('');
 
     const { register, handleSubmit, formState, reset } = useForm({
@@ -56,16 +62,20 @@ const CreatePost = () => {
 
     const { errors: formError, isSubmitting } = formState
 
-    console.log('erros', formError);
-    console.log('isSubmitting', isSubmitting);
+    console.log('user', user);
+    // console.log('isSubmitting', isSubmitting);
     
     const handleSubmitData = async (data) => 
     {
         console.log("handleSubmitData",data); // Faça algo com os dados do formulário
+        data.uid = user.uid;
+        data.createdBy = user.displayName;
+        console.log('data depois', data)
+        
+        await insertDocument({data})
 
-        // const res = await createUser(data)
-
-        // console.log(res);
+        console.log(response);
+        console.log(response.error);
 
         reset();
     };
@@ -87,21 +97,26 @@ const CreatePost = () => {
 
                 { isSubmitting && ( <LineProgress/> ) }
 
-                {/* {
-                    errorRequest && (
+                {
+                    response.error && (
 
-                    <Alert  sx={{width: '100%', padding: '0 .4rem', m: 0, border: 'none', fontSize: '0.2rem'}} variant="outlined" severity="error" >{errorRequest}</Alert>
+                    <Alert  
+                        sx={{width: '100%', padding: '0 .4rem', m: 0, border: 'none', fontSize: '0.2rem'}} 
+                        variant="outlined" 
+                        severity="error" >
+                            {response.error}
+                    </Alert>
 
                     )
-                } */}
+                }
 
                 <div>
                     <TitleForm>
-                        Registrar
+                        Criando Post
                     </TitleForm>
 
                     <DescriptionForm>
-                        Cadastre-se para postar
+                        Crie seu post e compartilhe seu conhecimento
                     </DescriptionForm>
 
                 </div>
@@ -132,7 +147,11 @@ const CreatePost = () => {
 
                                 <div className={styles.boxErro}>
                                     {formError[nameComponent] && (
-                                        <Alert   sx={{width: '100%', padding: '0 .4rem', m: 0, border: 'none', fontSize: '0.2rem'}} variant="outlined" severity="error" >{formError[nameComponent].message}</Alert>
+                                        <Alert   
+                                            sx={{width: '100%', padding: '0 .4rem', m: 0, border: 'none', fontSize: '0.2rem'}}
+                                            variant="outlined" severity="error" >
+                                                {formError[nameComponent].message}
+                                        </Alert>
                                     )}
                                 </div>
 
