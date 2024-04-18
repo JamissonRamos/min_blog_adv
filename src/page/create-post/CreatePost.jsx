@@ -1,6 +1,6 @@
 
 //React
-// import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 //UseForm
 import { useForm } from 'react-hook-form';
@@ -29,16 +29,20 @@ import InputText from '../../components/components-form/InputText';
 
 const schema = Yup.object().shape({
     title:Yup.string().min(3, 'Campo tem quer ter no mínimo 3 caracteres').required('Campo Obrigatório'),
-    image:Yup.string(),
+    image:Yup.string().url('O campo image deve ser uma URL válida').required('Campo Obrigatório'),
     body:Yup.string().min(6, 'Campo tem quer ter no mínimo 6 caracteres').required('Campo Obrigatório'),
-    tags:Yup.string().required('Campo Obrigatório'),
+    // tags:Yup.string().required('Campo Obrigatório').split('; ').map(tag => `#${tag.toUpperCase()}`).join(';') ,
+    tags: Yup.string().transform(value => {
+        const tagsArray = value.split('; ').map(tag => `#${tag.trim().toLowerCase().replace(/ /g, '')}`); // Remove todos os espaços em branco 
+            return tagsArray.join(';');
+    }).required('Campo Obrigatório')
 })
 
 const componentsForm = [
     {id:1, typeComponent:'text', nameComponent:'title', placeholder:'Digite um titulo', label: 'Título'},
     {id:2, typeComponent:'text', nameComponent:'image',  placeholder:'Insira um imagem que represente seu post', label: 'Imagem'},
     {id:3, typeComponent:'textArea', nameComponent:'body', placeholder:'Insira o  conteúdo do post', label: 'Conteúdo'},
-    {id:4, typeComponent:'text', nameComponent:'tags', placeholder:'Coloque suas tegs separadas por ; ', label: 'Tags'}
+    {id:4, typeComponent:'text', nameComponent:'tags', placeholder:'Coloque suas tags separadas por ; ', label: 'Tags'}
 ]
 
 const CreatePost = () => {
@@ -46,6 +50,7 @@ const CreatePost = () => {
     const { insertDocument, response } = useInsertDocuments("posts"); // error: authError
 
     const user = useAuthValue();
+    const navigate = useNavigate();
 
     // const [errorRequest, setErrorRequest] = useState('');
 
@@ -62,22 +67,39 @@ const CreatePost = () => {
 
     const { errors: formError, isSubmitting } = formState
 
-    console.log('user', user);
+    //console.log('user', user);
     // console.log('isSubmitting', isSubmitting);
     
     const handleSubmitData = async (data) => 
     {
         console.log("handleSubmitData",data); // Faça algo com os dados do formulário
-        data.uid = user.uid;
-        data.createdBy = user.displayName;
-        console.log('data depois', data)
-        
-        await insertDocument({data})
+        // data.uid = user.uid;
 
+        // data.createdBy = user.displayName;
+
+        //console.log('data depois', data)
+
+
+        const tagsArray = data.tags.split(';').map(tag => tag.trim());
+
+        
+        await insertDocument({
+            data: {
+                ...data,
+                tags: tagsArray
+                },
+            uid: user.uid,
+            createdBy: user.displayName,
+            });
+    
         console.log(response);
         console.log(response.error);
 
         reset();
+
+        //redirec page home
+        navigate("/")
+
     };
 
     // useEffect(() => {
