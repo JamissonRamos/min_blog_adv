@@ -67,22 +67,10 @@ const CreatePost = () => {
 
     const { errors: formError, isSubmitting } = formState
 
-    //console.log('user', user);
-    // console.log('isSubmitting', isSubmitting);
-    
     const handleSubmitData = async (data) => 
     {
-        console.log("handleSubmitData",data); // Faça algo com os dados do formulário
-        // data.uid = user.uid;
-
-        // data.createdBy = user.displayName;
-
-        //console.log('data depois', data)
-
-
         const tagsArray = data.tags.split(';').map(tag => tag.trim());
 
-        
         await insertDocument({
             data: {
                 ...data,
@@ -92,24 +80,16 @@ const CreatePost = () => {
             createdBy: user.displayName,
             });
     
-        console.log(response);
-        console.log(response.error);
+        
+            reset();
 
-        reset();
+            //redirec page home
+            navigate("/")
+    
 
-        //redirec page home
-        navigate("/")
+        
 
     };
-
-    // useEffect(() => {
-        
-    //     if (authError) {
-            
-    //         setErrorRequest(authError);
-    //     }
-
-    // }, [authError]);
 
     return (
 

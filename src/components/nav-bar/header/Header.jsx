@@ -31,7 +31,7 @@
 
         const pages = [
             {id: 1, page: 'HOME', icon: <HomeIcon/>, linkPage: '/'},
-            {id: 2, page: 'BLOG', icon: <LanguageIcon/>, linkPage: '/'},
+            {id: 2, page: 'BLOG', icon: <LanguageIcon/>, linkPage: '/blog_page'},
             {id: 3, page: 'SERVIÇOS', icon: <MedicalServicesIcon/>, linkPage: '/'},
             {id: 4, page: 'SOBRE', icon: <InfoIcon/>, linkPage: '/about'},
         ];

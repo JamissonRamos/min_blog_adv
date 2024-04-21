@@ -7,6 +7,7 @@ const initialState = {
 
     loaging: null,
     error: null,
+    success: null,
 }
 
 const insertReducer = (state, action) => {
@@ -14,11 +15,11 @@ const insertReducer = (state, action) => {
     switch(action.type){
 
         case "LOADING":
-            return {loading: true, error: null};
+            return {loading: true, error: null, success: null};
         case "INSERTED_DOC":
-            return {loading: false, error: null};
+            return {loading: false, error: null, success: true};
         case "ERROR":
-            return {loading: false, error: action.payload};
+            return {loading: false, error: action.payload, success: null};
         default:
             return state;
     }
@@ -62,7 +63,7 @@ export const useInsertDocuments = (docCollection) => {
             )
 
             checkCancelBeforeDispatch({
-                type:'INSERTED_DOC',
+                type: 'INSERTED_DOC',
                 payload: insertDocument
             })
 
