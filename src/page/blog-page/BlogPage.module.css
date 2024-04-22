@@ -1,7 +1,7 @@
 
 .container
 {
-    border: 1px solid red;
+    /* border: 1px solid red; */
 
     width: 100%;
     height: 100vh;
@@ -9,5 +9,63 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    padding: 20px 120px;
+    
+}
+
+.content
+{
+    /* border: 1px solid red; */
+
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    gap: .8rem;
+    
+}
+
+.form{
+    /* border: 1px solid blue; */
+    width: 50%;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .8rem ;
+
+}
+
+.inputTex
+{
+    /* border: 1px solid red; */
+
+    width: 80%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+.boxButton
+{
+    /* border: 1px solid red;    */
+
+    height: 100%;
+
+    
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+
+    padding-top: .4rem;
     
 }

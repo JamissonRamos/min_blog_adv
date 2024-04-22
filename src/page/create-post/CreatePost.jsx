@@ -85,10 +85,6 @@ const CreatePost = () => {
 
             //redirec page home
             navigate("/")
-    
-
-        
-
     };
 
     return (
