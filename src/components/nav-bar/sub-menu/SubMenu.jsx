@@ -29,8 +29,6 @@ const SubMenu = () => {
     //Função para fazer o logout sing in do sistema
     const { logout } = useAuthentication();
 
-    console.log(user)
-
     const handleClick = (e) => {
         setAnchorEl(e.currentTarget);
     };
