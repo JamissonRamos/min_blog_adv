@@ -10,7 +10,7 @@
     flex-direction: column;
     align-items: center;
 
-    padding: 20px 120px;
+    padding: 0  120px;
     
 }
 
@@ -69,3 +69,26 @@
     padding-top: .4rem;
     
 }
+
+@media (max-width: 900px) {
+
+    .container
+{
+
+    padding: 2rem 20px;
+
+}
+    .form {
+
+        width: 100%;
+    }
+
+    
+    .inputTex, .boxErro
+    {
+        /* border: 1px solid red; */
+
+        width: 100%;
+    }
+}
+  

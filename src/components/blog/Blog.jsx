@@ -50,8 +50,6 @@ const Blog = ({posts}) => {
 
                                 <div className={styles.cardHeader}>
 
-                                    
-
                                     <img src={post.data.image && post.data.image} alt={post.data.title} className={styles.fotoPost}/>
                                 
                                 </div>
@@ -89,11 +87,23 @@ const Blog = ({posts}) => {
                                                 }}                                      
                                             >
 
-                                            post Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit in voluptatem fugiat fugit minus, sapiente deleniti vero nobis eius, provident quisquam enim at unde laborum iusto ipsa aliquam commodi eos.
+                                                {post.data.body}
 
                                         </Typography>
 
                                     </div>
+
+                                </div>
+
+                                <div className={styles.cardFooter}>
+
+                                    <Button variant='contained'href={'#'} target='_blank' > 
+
+                                    <Typography sx={{fontSize:'.8rem'}} > 
+                                        Mais Detalhes
+                                    </Typography>
+
+                                    </Button>
 
                                 </div>
                     
