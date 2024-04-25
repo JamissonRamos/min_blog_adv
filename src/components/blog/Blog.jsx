@@ -3,16 +3,13 @@
 import styles from './Blog.module.css';
 
 //Material UI
-import { Button, Typography } from '@mui/material';
+import { Button, Chip, Typography } from '@mui/material';
 
-import undFotoPost from '../../assets/undFotoPost.png';
-import { useState } from 'react';
+// import undFotoPost from '../../assets/undFotoPost.png';
+
+
 
 const Blog = ({posts}) => {
-
-
-    console.log(posts)
-    const [dataPosts] = useState([posts]) 
 
     return (
 
@@ -90,6 +87,29 @@ const Blog = ({posts}) => {
                                                 {post.data.body}
 
                                         </Typography>
+
+                                    </div>
+
+                                    <div className={styles.tags}>
+                                        
+                                        {
+                                            Array.isArray(post.data.tags) && 
+
+                                                post.data.tags.map((tag, id) => (
+
+                                                    <Chip
+                                                        sx={{height: "16px", p: "0.2rem" }}
+                                                    
+                                                        key={id}
+                                                        label={tag}
+                                                        // icon={<DoneIcon />}
+                                                        size='small'
+                                                        color='primary'
+                                                        variant='outlined'
+                                                    />
+                                                ))
+                                        }
+                                        
 
                                     </div>
 

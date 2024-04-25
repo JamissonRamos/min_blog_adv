@@ -108,6 +108,21 @@
     text-align: start;  
 }
 
+.tags
+{
+    /* border: 1px solid red; */
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+
+    padding: .8rem 0;
+
+    overflow: auto;
+}
+
 .cardFooter
 {
     display: flex;
