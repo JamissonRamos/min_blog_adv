@@ -3,13 +3,14 @@
 import styles from './Home.module.css'
 
 //Material UI
-import { Button, Typography } from '@mui/material'
+import { Alert, Button, Typography } from '@mui/material'
 
 //Icons
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import Cards from '../../components/cards/Cards';
 import Blog from '../../components/blog/Blog';
 import Profile from './Profile';
+import { useFetchDocuments } from '../../hooks/useFetchDocuments';
 
 
 const atuacoes = 
@@ -43,11 +44,24 @@ const atuacoes =
 
 const Home = () => {
 
+    const { documents: posts , error: errorFetch } = useFetchDocuments('posts')
+
     return (
 
         <>
             <div className={styles.container}>
+            {
+                    errorFetch && (
 
+                    <Alert  
+                        sx={{width: '100%', padding: '0 .4rem', m: 0, border: 'none', fontSize: '0.2rem'}} 
+                        variant="outlined" 
+                        severity="error" >
+                            {errorFetch}
+                    </Alert>
+
+                    )
+                }
 
                 <div className={styles.contentPerfil}>
 
@@ -73,7 +87,7 @@ const Home = () => {
 
                 <div className={styles.blog}>
 
-                    <Blog />
+                    <Blog posts={posts}/>
                     
                 </div>
 

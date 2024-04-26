@@ -17,11 +17,10 @@ import styles from './BlogPage.module.css';
 import Blog from '../../components/blog/Blog';
 import { Alert, Button } from '@mui/material';
 import LineProgress from '../../components/line-progress/LineProgress';
-import { useState } from 'react';
 import { useFetchDocuments } from '../../hooks/useFetchDocuments';
 
 const schema = Yup.object().shape({
-    search:Yup.string()
+    inputSearch:Yup.string()
 })
 
 const BlogPage = () => {
@@ -36,7 +35,7 @@ const BlogPage = () => {
         mode: 'all',
         resolver: yupResolver(schema),
         defaultValues: {
-            search: ''
+            inputSearch: ''
         }
     });
 
@@ -45,6 +44,12 @@ const BlogPage = () => {
     const handleSubmitData = async (data) => 
     {
         console.log(data)
+        
+        if(data.inputSearch){
+            return navigate(`/search?q=${data.inputSearch}`)// Navigate(`/`) //search?q=${query}
+        }
+
+
         //const tagsArray = data.tags.split(';').map(tag => tag.trim());
 
         // await insertDocument({
@@ -102,7 +107,7 @@ const BlogPage = () => {
                         <div className={styles.inputTex}>
 
                             <InputText 
-                                nameComponent={'Pesquisa'}
+                                nameComponent={'inputSearch'}
                                 label={'Pesquisa'}
                                 placeholder={'pesquise pelas tags do post'}
                                 typeComponent={'text'}
@@ -111,7 +116,7 @@ const BlogPage = () => {
                         </div>
 
                         <div className={styles.boxButton}>
-                            <Button size='small' variant='contained' >Pesquisa</Button>
+                            <Button type='submit' size='small' variant='contained' >Pesquisa</Button>
                         </div>
                     </form>
                      

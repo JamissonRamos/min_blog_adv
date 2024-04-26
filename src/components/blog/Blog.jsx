@@ -1,5 +1,6 @@
 
 //Css
+import { Spa } from '@mui/icons-material';
 import styles from './Blog.module.css';
 
 //Material UI
@@ -90,23 +91,14 @@ const Blog = ({posts}) => {
 
                                     </div>
 
+                                    
                                     <div className={styles.tags}>
-                                        
                                         {
                                             Array.isArray(post.data.tags) && 
 
                                                 post.data.tags.map((tag, id) => (
 
-                                                    <Chip
-                                                        sx={{height: "16px", p: "0.2rem" }}
-                                                    
-                                                        key={id}
-                                                        label={tag}
-                                                        // icon={<DoneIcon />}
-                                                        size='small'
-                                                        color='primary'
-                                                        variant='outlined'
-                                                    />
+                                                    <span key={id}> {tag} </span>
                                                 ))
                                         }
                                         

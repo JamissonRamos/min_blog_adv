@@ -33,6 +33,7 @@ import './App.css'
   import Dashboard from './page/dashboard/Dashboard'
   import CreatePost from './page/create-post/CreatePost'
   import BlogPage from './page/blog-page/BlogPage';
+  import Search from './page/search/Search';
 //*****************************************************************/
 
 function App() {
@@ -76,6 +77,7 @@ function App() {
             <Routes>
               <Route path='/' element={<Home/>} ></Route>
               <Route path='/about' element={<About/>} ></Route>
+              <Route path='/search' element={<Search/>} ></Route>
               <Route path='/blog_page' element={<BlogPage/>} ></Route>
               <Route path='/login' element={ !user ? <Login/> : <Navigate to="/" /> } ></Route>
               <Route path='/register' element={ !user ? <Register/> : <Navigate to="/" />  } ></Route>
