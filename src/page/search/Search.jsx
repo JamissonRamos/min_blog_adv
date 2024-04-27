@@ -25,12 +25,12 @@ const Search = () => {
             {
                 errorFetch && (
 
-                <Alert  
-                    sx={{width: '100%', padding: '0 .4rem', m: 0, border: 'none', fontSize: '0.2rem'}} 
-                    variant="outlined" 
-                    severity="error" >
-                        {errorFetch}
-                </Alert>
+                    <Alert  
+                        sx={{width: '100%', padding: '0 .4rem', m: 0, border: 'none', fontSize: '0.2rem'}} 
+                        variant="outlined" 
+                        severity="error" >
+                            {errorFetch}
+                    </Alert>
 
                 )
             }
