@@ -8,7 +8,7 @@ import { Alert, Button, Typography } from '@mui/material'
 //Icons
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import Cards from '../../components/cards/Cards';
-import Blog from '../../components/blog/Blog';
+import Blog from '../../components/blog/CardsBlog';
 import Profile from './Profile';
 import { useFetchDocuments } from '../../hooks/useFetchDocuments';
 
@@ -86,6 +86,25 @@ const Home = () => {
                 </div>
 
                 <div className={styles.blog}>
+
+                    <div className={styles.titleBlog}>
+
+                        <Typography
+                            sx={{color: 'var(--verde-800)', fontWeight: 'bold'}}
+                            variant='h4'
+                        >
+                            Meu Blog
+
+                        </Typography>
+
+                        <Typography
+                            sx={{color: 'var(--cinza-800)'}}
+                            paragraph
+                        >
+                            Confira aqui no blog informações e dicas sobre o mundo do direito
+                        </Typography>
+                                
+                    </div> 
 
                     <Blog posts={posts}/>
                     

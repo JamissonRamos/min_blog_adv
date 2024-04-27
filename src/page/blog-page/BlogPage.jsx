@@ -14,10 +14,11 @@ import InputText from '../../components/components-form/InputText';
 import DescriptionForm from '../../components/components-form/DescriptionForm';
 // import TitleForm from '../../components/components-form/TitleForm';
 import styles from './BlogPage.module.css';
-import Blog from '../../components/blog/Blog';
+
 import { Alert, Button } from '@mui/material';
 import LineProgress from '../../components/line-progress/LineProgress';
 import { useFetchDocuments } from '../../hooks/useFetchDocuments';
+import PostDetail from '../../components/blog/PostDetail';
 
 const schema = Yup.object().shape({
     inputSearch:Yup.string()
@@ -119,11 +120,11 @@ const BlogPage = () => {
                             <Button type='submit' size='small' variant='contained' >Pesquisa</Button>
                         </div>
                     </form>
-                     
                     {
                         posts && posts.length > 0 ?  
                         (
-                            <Blog posts={posts}/>
+                                // <Blog posts={posts}/>
+                                <PostDetail posts={posts}/>
                         ): 
                         (
                             <div>

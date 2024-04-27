@@ -1,13 +1,11 @@
 
 //Css
-import { Spa } from '@mui/icons-material';
-import styles from './Blog.module.css';
+import styles from './CardsBlog.module.css';
 
 //Material UI
-import { Button, Chip, Typography } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 
 // import undFotoPost from '../../assets/undFotoPost.png';
-
 
 
 const Blog = ({posts}) => {
@@ -17,25 +15,6 @@ const Blog = ({posts}) => {
         <>
 
             <div className={styles.container}>
-
-                <div className={styles.titleBlog}>
-
-                    <Typography
-                        sx={{color: 'var(--verde-800)', fontWeight: 'bold'}}
-                        variant='h4'
-                    >
-                        Meu Blog
-
-                    </Typography>
-
-                    <Typography
-                        sx={{color: 'var(--cinza-800)'}}
-                        paragraph
-                    >
-                        Confira aqui no blog informações e dicas sobre o mundo do direito
-                    </Typography>
-                    
-                </div>
 
 
                 <div className={styles.cards}>
