@@ -13,13 +13,18 @@ const Search = () => {
 
     const navigate = useNavigate();
     const query = useQuery()
-    const search = query.get("q")
+    const search = query.get("q") || ""
+
+    console.log(query)
+    console.log(search)
 
     const { documents: posts, loading, error: errorFetch } = useFetchDocuments('posts',search)
 
+    console.log(posts)
     return (
 
         <>
+            <h1>Pesquisa</h1>
             { loading && ( <LineProgress/> ) }
 
             {

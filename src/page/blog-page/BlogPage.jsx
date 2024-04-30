@@ -44,9 +44,10 @@ const BlogPage = () => {
 
     const handleSubmitData = async (data) => 
     {
-        console.log(data)
+        console.log(data.inputSearch)
         
         if(data.inputSearch){
+
             return navigate(`/search?q=${data.inputSearch}`)// Navigate(`/`) //search?q=${query}
         }
 

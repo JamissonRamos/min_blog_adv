@@ -33,7 +33,7 @@ const schema = Yup.object().shape({
     body:Yup.string().min(6, 'Campo tem quer ter no mínimo 6 caracteres').required('Campo Obrigatório'),
     // tags:Yup.string().required('Campo Obrigatório').split('; ').map(tag => `#${tag.toUpperCase()}`).join(';') ,
     tags: Yup.string().transform(value => {
-        const tagsArray = value.split('; ').map(tag => `#${tag.trim().toLowerCase().replace(/ /g, '')}`); // Remove todos os espaços em branco 
+        const tagsArray = value.split('; ').map(tag => `${tag.trim().toLowerCase().replace(/ /g, '')}`); // Remove todos os espaços em branco 
             return tagsArray.join(';');
     }).required('Campo Obrigatório')
 })
