@@ -2,11 +2,14 @@
 //Css
 import styles from './PostDetail.module.css';
 
+import { useNavigate } from 'react-router-dom';
+
 // import undFotoPost from '../../assets/undFotoPost.png';
 import { Button, Typography } from '@mui/material';
 
 const PostDetail = ({posts}) => {
 
+    const navigate = useNavigate();
 
     console.log(posts)
     return (
@@ -66,7 +69,24 @@ const PostDetail = ({posts}) => {
 
                                     </div>
 
+                                    <Typography
+                                            sx={{ color: 'var(--cinza-800)', 
+                                            fontSize: '1em', 
+                                            fontWeight: 'bold',
+                                            overflow:'hidden',
+                                            textOverflow:'ellipsis',
+                                            display: '-webkit-box',
+                                            WebkitLineClamp: 2, // Este valor define o número de linhas antes do corte
+                                            WebkitBoxOrient: 'vertical'
+                                        }}  
+                                            variant="subtitle1"                                  
+                                        >
+                                            Tags do post
+
+                                        </Typography>
+
                                     <div className={styles.tags}>
+
                                         
                                         {
                                             Array.isArray(post.data.tags) && 
@@ -84,7 +104,10 @@ const PostDetail = ({posts}) => {
                                 
                                 <div className={styles.cardFooter}>
 
-                                    <Button variant='contained'href={'#'} target='_blank' > 
+                                    <Button 
+                                        type='button' 
+                                        variant='contained'href={'#'}  
+                                        onClick={() => navigate(`/post/${post.id}`)} > {/* to={`/posts/${post.id}`} target='_blank' */}
 
                                         <Typography sx={{fontSize:'.8rem'}} > 
                                             Mais Detalhes
