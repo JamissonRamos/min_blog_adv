@@ -1,5 +1,6 @@
 
 //Css
+import { useNavigate } from 'react-router-dom';
 import styles from './CardsBlog.module.css';
 
 //Material UI
@@ -9,6 +10,8 @@ import { Button, Typography } from '@mui/material';
 
 
 const Blog = ({posts}) => {
+
+    const navigate = useNavigate();
 
     return (
 
@@ -88,7 +91,8 @@ const Blog = ({posts}) => {
 
                                 <div className={styles.cardFooter}>
 
-                                    <Button variant='contained'href={'#'} target='_blank' > 
+                                    <Button variant='contained' 
+                                    onClick={() => navigate(`/post/${post.id}`)} > {/*  "/blog_page"  */}
 
                                     <Typography sx={{fontSize:'.8rem'}} > 
                                         Mais Detalhes

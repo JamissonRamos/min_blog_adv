@@ -87,7 +87,7 @@ const PostDetail = ({posts}) => {
 
                                     <div className={styles.tags}>
 
-                                        
+                                    
                                         {
                                             Array.isArray(post.data.tags) && 
 
@@ -106,7 +106,7 @@ const PostDetail = ({posts}) => {
 
                                     <Button 
                                         type='button' 
-                                        variant='contained'href={'#'}  
+                                        variant='contained' 
                                         onClick={() => navigate(`/post/${post.id}`)} > {/* to={`/posts/${post.id}`} target='_blank' */}
 
                                         <Typography sx={{fontSize:'.8rem'}} > 
