@@ -16,18 +16,16 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import DashboardCustomizeIcon from '@mui/icons-material/DashboardCustomize';
 import LogoutIcon from '@mui/icons-material/Logout';
 
-//Imagens
-import perfilImage from '../../../assets/perfil.jpg'; // Importe a imagem usando o caminho relativo correto
-
-
 const SubMenu = () => {
     const [anchorEl, setAnchorEl] = useState(null); //Monitorar o menu do avatar;
 
     //Passando usuário logado
-    const user = useAuthValue();
+    const user = useAuthValue() || "";
+
+    console.log(user)
 
     //Função para fazer o logout sing in do sistema
-    const { logout } = useAuthentication();
+    const { logout } = useAuthentication() ;
 
     const handleClick = (e) => {
         setAnchorEl(e.currentTarget);
@@ -47,13 +45,14 @@ const SubMenu = () => {
         {id: 5, page: 'LOGIN', icon: <LogoutIcon/>, linkPage: '/login', visibliPageUser: false},
     ];
 
+
     return ( 
 
         <>
             {/* Coloca o nome do usuário logado no sistema  */}
-            <Tooltip title="Alana"> 
+            <Tooltip title={user.displayName}> 
 
-                <Avatar alt="Remy Sharp" src={perfilImage} onClick={handleClick} />
+                <Avatar alt={user.displayName } src={user.photoURL ? user.photoURL : user.displayName} onClick={handleClick} />
 
             </Tooltip>
 
@@ -111,6 +110,14 @@ const SubMenu = () => {
                                         </Typography>
         
                                     </MenuItem>
+
+                                    <Divider/>
+
+                                    <Typography 
+                                            textAlign="center" 
+                                            sx={{color: 'var(--blue-800)', fontSize: '.8rem', fontWeight: 'bold'}}>
+                                            {user.displayName}
+                                    </Typography>
         
                                 </Box>
                             ) : null

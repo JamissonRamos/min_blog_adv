@@ -14,6 +14,8 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(null);
 
+    console.log(uid);
+
         
     // deal with memory leak
     const [cancelled, setCancelled] = useState(false);
@@ -22,69 +24,71 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
 
         async function loadData() {
 
-        if (cancelled) {
-            return;
-        }
-    
-        setLoading(true);
-    
-        const collectionRef = await collection(db, docCollection);
-    
-        try {
-            
-            let q;
-            
-            if (search) {
-                console.log(search)
-                q = await query(    
-                    collectionRef,
-                    where("data.tags", "array-contains", search),
-                    orderBy("createdAt", "desc")
-                );
-
-                console.log(q)
-            } //else if (uid) {
-
-                //     q = await query(
-                //         collectionRef,
-                //         where("uid", "==", uid),
-                //         orderBy("createdAt", "desc")
-                //     );
-
-            else {
-
-                q = await query(collectionRef, orderBy("createdAt", "desc"));
-
+            if (cancelled) {
+                return;
             }
     
-        await onSnapshot(q, (querySnapshot) => {
-            
-            console.log(querySnapshot)
+            setLoading(true);
+    
+            const collectionRef = await collection(db, docCollection);
+    
+            try {
+                
+                let q;
+                
+                if (search) {
+                    console.log(search)
+                    q = await query(    
+                        collectionRef,
+                        where("data.tags", "array-contains", search),
+                        orderBy("createdAt", "desc")
+                    );
 
-            setDocuments(
+                    console.log(q)
+                }else if (uid) {
 
-                querySnapshot.docs.map((doc) => ({
+                    q = await query(
+                        collectionRef,
+                        where("uid", "==", uid),
+                        orderBy("createdAt", "desc")
+                    );
 
-                    id: doc.id,
-                    ...doc.data(),
+                }else {
 
-                }))
-            );
+                    q = await query(collectionRef, orderBy("createdAt", "desc"));
 
-        });
+                }
+        
+                await onSnapshot(q, (querySnapshot) => {
+                    
+                    console.log(querySnapshot)
 
-        } catch (error) {
+                    setDocuments(
 
-            console.log(error);
-            setError(error.message);
+                        querySnapshot.docs.map((doc) => ({
+
+                            id: doc.id,
+                            ...doc.data(),
+
+                        }))
+                    );
+
+                });
+                
+                setLoading(false);
+
+            } catch (error) {
+
+                console.log(error);
+                setError(error.message);
+            }
+    
+            setLoading(false);
+        
         }
     
-        setLoading(false);
-        
-    }
-    
         loadData();
-    }, [docCollection, search, uid, cancelled]);
+    }, [ search, uid, cancelled]);
     
 
     //console.log(documents);
