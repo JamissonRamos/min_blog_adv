@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuthValue } from '../../context/AuthContext';
 import { useFetchDocuments } from '../../hooks/useFetchDocuments';
 import LineProgress from '../../components/line-progress/LineProgress';
+import TitleForm from '../../components/components-form/TitleForm';
 
 const Dashboard = () => {
 
@@ -69,8 +70,53 @@ const Dashboard = () => {
                     ) 
 
                     : (
-                        <div> 
-                            <h1>tem post!</h1> 
+
+                        <div className={styles.contentPosts}> 
+
+                            <div className={styles.title}>
+                                <TitleForm>Todos os seus posts</TitleForm> 
+                            </div>
+
+                            <div className={styles.tableHeader}>
+                                <span className={styles.row} >Título</span>
+                                {/* <span className={styles.row} >ações</span> */}
+                            </div>
+
+                            <div className={styles.table}>
+
+                                <div className={styles.tableBody}>
+
+                                    <p className={styles.rowBody}>
+                                        posts
+                                    </p>
+
+                                    <div className={styles.footer}>
+                                
+                                        <span className={styles.rowBody}>Ver</span>
+                                        <span className={styles.rowBody}>Editar</span>
+                                        <span className={styles.rowBody}>Excluir</span>
+                                    
+                                    </div>
+
+                                </div>
+
+                                <div className={styles.tableBody}>
+
+                                    <p className={styles.rowBody}>
+                                        posts
+                                    </p>
+
+                                    <div className={styles.footer}>
+                                
+                                        <span className={styles.rowBody}>Ver</span>
+                                        <span className={styles.rowBody}>Editar</span>
+                                        <span className={styles.rowBody}>Excluir</span>
+                                    
+                                    </div>
+
+                                </div>
+
+                            </div>
                             
                         </div>
                     )
