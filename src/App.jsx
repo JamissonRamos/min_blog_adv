@@ -35,6 +35,7 @@ import './App.css'
   import BlogPage from './page/blog-page/BlogPage';
   import Search from './page/search/Search';
   import Post from './page/post/Post';
+import EditPost from './page/edit-post/EditPost';
 //*****************************************************************/
 
 function App() {
@@ -89,6 +90,7 @@ function App() {
             <Route path='/register' element={ !user ? <Register/> : <Navigate to="/" />  } ></Route>
             <Route path='/dashboard' element={user ? <Dashboard/> : <Navigate to="/login" /> } ></Route>
             <Route path='/post/createPost' element={user ? <CreatePost/> : <Navigate to="/login" /> } ></Route>
+            <Route path='/post/editPost/:id' element={user ? <EditPost/> : <Navigate to="/login" /> } ></Route>
           </Routes>
 
           <section  className='section-footer'>

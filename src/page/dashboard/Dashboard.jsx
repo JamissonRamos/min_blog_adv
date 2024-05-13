@@ -3,7 +3,7 @@
 import { Alert, Button } from '@mui/material';
 import DescriptionForm from '../../components/components-form/DescriptionForm';
 import styles from './Dashboard.module.css';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 //Hook
 import { useAuthValue } from '../../context/AuthContext';
@@ -25,14 +25,26 @@ const Dashboard = () => {
     const {documents: posts, error, loading } = useFetchDocuments("posts", null, uid)
 
 
+    const deleteDocument = (id) => {
+
+        console.log(id)
+    }
+
+
     console.log(posts)
+
+    if(loading){
+        
+        return  <>
+        
+            { loading && ( <LineProgress/> ) }
+        </>
+    }
+    
     return (
 
         <>
             <div className={styles.container}>
-
-                
-                { loading && ( <LineProgress/> ) }
 
                 {
                     error && (
@@ -77,47 +89,52 @@ const Dashboard = () => {
                                 <TitleForm>Todos os seus posts</TitleForm> 
                             </div>
 
-                            <div className={styles.tableHeader}>
-                                <span className={styles.row} >Título</span>
-                                {/* <span className={styles.row} >ações</span> */}
-                            </div>
 
-                            <div className={styles.table}>
+                            <div  className={styles.table}>
 
-                                <div className={styles.tableBody}>
-
-                                    <p className={styles.rowBody}>
-                                        posts
-                                    </p>
-
-                                    <div className={styles.footer}>
-                                
-                                        <span className={styles.rowBody}>Ver</span>
-                                        <span className={styles.rowBody}>Editar</span>
-                                        <span className={styles.rowBody}>Excluir</span>
-                                    
-                                    </div>
-
+                                <div className={styles.tableHeader}>
+                                    <span className={styles.row} >Título</span>
+                                    {/* <span className={styles.row} >ações</span> */}
                                 </div>
 
                                 <div className={styles.tableBody}>
 
-                                    <p className={styles.rowBody}>
-                                        posts
-                                    </p>
+                                    {
+                                        posts && posts.map((post) => (
 
-                                    <div className={styles.footer}>
-                                
-                                        <span className={styles.rowBody}>Ver</span>
-                                        <span className={styles.rowBody}>Editar</span>
-                                        <span className={styles.rowBody}>Excluir</span>
-                                    
-                                    </div>
+                                            <div className={styles.tableRow} key={post.id} >
 
+                                                <p className={styles.rowBody}>
+                                                    {post.data.title}
+                                                </p>
+        
+                                                <div className={styles.footer}>
+
+                                                    <Link to={`/post/${post.id}`}>
+                                                        <Button variant='outlined'  className={styles.btn}>
+                                                            <span  className={styles.btn}>Ver</span>
+                                                        </Button>
+                                                    </Link>
+                                                    
+                                                    <Link to={`/post/editPost/${post.id}`}>
+                                                        <Button variant='outlined'  className={styles.btn}>
+                                                        <span  className={styles.btn}>Editar</span>
+                                                        </Button>
+                                                    </Link>
+
+                                                    <Button variant='contained' color="error" onClick={() => deleteDocument(post.id)}>
+                                                        <span  className={styles.btn2 }>Excluir</span>
+                                                    </Button>
+                                                
+                                                </div>
+        
+                                            </div>
+                                        ))
+                                    }
                                 </div>
 
                             </div>
-                            
+
                         </div>
                     )
                 }
