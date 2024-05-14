@@ -54,7 +54,7 @@ const CreatePost = () => {
 
     // const [errorRequest, setErrorRequest] = useState('');
 
-    const { register, handleSubmit, formState, reset } = useForm({
+    const { handleSubmit, control, formState, reset } = useForm({
         mode: 'all',
         resolver: yupResolver(schema),
         defaultValues: {
@@ -135,7 +135,8 @@ const CreatePost = () => {
                                             label={label}
                                             placeholder={placeholder}
                                             typeComponent={typeComponent}
-                                            register={register} // Passando o register para o componente InputText {... register(nameComponent)}
+                                            //register={register} // Passando o register para o componente InputText {... register(nameComponent)}
+                                            control={control}
                                         />
 
                                     </div>

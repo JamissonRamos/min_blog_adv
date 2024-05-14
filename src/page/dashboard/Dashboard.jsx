@@ -115,7 +115,7 @@ const Dashboard = () => {
                                                             <span  className={styles.btn}>Ver</span>
                                                         </Button>
                                                     </Link>
-                                                    
+                                                        
                                                     <Link to={`/post/editPost/${post.id}`}>
                                                         <Button variant='outlined'  className={styles.btn}>
                                                         <span  className={styles.btn}>Editar</span>

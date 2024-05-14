@@ -1,6 +1,6 @@
 
 //React
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 //UseForm
 import { useForm } from 'react-hook-form';
@@ -26,6 +26,9 @@ import LineProgress from '../../components/line-progress/LineProgress'
 import TitleForm from '../../components/components-form/TitleForm';
 import DescriptionForm from '../../components/components-form/DescriptionForm';
 import InputText from '../../components/components-form/InputText';
+import { useFetchDocument } from '../../hooks/useFetchDocument';
+import { useEffect } from 'react';
+
 
 const schema = Yup.object().shape({
     title:Yup.string().min(3, 'Campo tem quer ter no mínimo 3 caracteres').required('Campo Obrigatório'),
@@ -47,14 +50,18 @@ const componentsForm = [
 
 const EditPost = () => {
 
-    const { insertDocument, response } = useInsertDocuments("posts"); // error: authError
-
+    const {id: idParams} = useParams()
     const user = useAuthValue();
     const navigate = useNavigate();
 
+    const { insertDocument, response } = useInsertDocuments("posts"); // error: authError
+    const  { document: post, loading, error: errorLoadingDocument } = useFetchDocument("posts", idParams)
+
+    console.log(post);
+
     // const [errorRequest, setErrorRequest] = useState('');
 
-    const { register, handleSubmit, formState, reset } = useForm({
+    const { handleSubmit, control, formState, reset } = useForm({
         mode: 'all',
         resolver: yupResolver(schema),
         defaultValues: {
@@ -87,6 +94,13 @@ const EditPost = () => {
             navigate("/")
     };
 
+    // Adicione o useEffect aqui
+useEffect(() => {
+    if (post) {
+        reset(post.data);
+    }
+}, [post, reset]);
+
     return (
 
         <>
@@ -94,6 +108,7 @@ const EditPost = () => {
             <div className={styles.container}>
 
                 { isSubmitting && ( <LineProgress/> ) }
+                { loading && ( <LineProgress/> ) }
 
                 {
                     response.error && (
@@ -103,6 +118,18 @@ const EditPost = () => {
                         variant="outlined" 
                         severity="error" >
                             {response.error}
+                    </Alert>
+
+                    )
+                }
+                {
+                    errorLoadingDocument && (
+
+                    <Alert  
+                        sx={{width: '100%', padding: '0 .4rem', m: 0, border: 'none', fontSize: '0.2rem'}} 
+                        variant="outlined" 
+                        severity="error" >
+                            {errorLoadingDocument}
                     </Alert>
 
                     )
@@ -135,7 +162,7 @@ const EditPost = () => {
                                             label={label}
                                             placeholder={placeholder}
                                             typeComponent={typeComponent}
-                                            register={register} // Passando o register para o componente InputText {... register(nameComponent)}
+                                            control={control}
                                         />
 
                                     </div>
