@@ -10,6 +10,7 @@ import { useAuthValue } from '../../context/AuthContext';
 import { useFetchDocuments } from '../../hooks/useFetchDocuments';
 import LineProgress from '../../components/line-progress/LineProgress';
 import TitleForm from '../../components/components-form/TitleForm';
+import { useDeleteDocuments } from '../../hooks/useDeleteDocuments';
 
 const Dashboard = () => {
 
@@ -23,17 +24,11 @@ const Dashboard = () => {
     //const posts = []
 
     const {documents: posts, error, loading } = useFetchDocuments("posts", null, uid)
-
-
-    const deleteDocument = (id) => {
-
-        console.log(id)
-    }
-
+    const { deleteDocument, response } = useDeleteDocuments("posts")
 
     console.log(posts)
 
-    if(loading){
+    if(loading || response.loading){
         
         return  <>
         

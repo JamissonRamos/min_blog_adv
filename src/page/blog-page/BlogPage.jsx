@@ -32,7 +32,7 @@ const BlogPage = () => {
 
     const navigate = useNavigate();
 
-    const { register, handleSubmit, formState, reset } = useForm({
+    const { control, handleSubmit, formState, reset } = useForm({
         mode: 'all',
         resolver: yupResolver(schema),
         defaultValues: {
@@ -113,7 +113,7 @@ const BlogPage = () => {
                                 label={'Pesquisa'}
                                 placeholder={'pesquise pelas tags do post'}
                                 typeComponent={'text'}
-                                register={register} // Passando o register para o componente InputText {... register(nameComponent)}
+                                control={control}
                             />
                         </div>
 
