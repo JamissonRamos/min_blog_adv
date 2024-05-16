@@ -63,8 +63,8 @@ function App() {
     )
   }
 
-  console.log(loadingUser)
-  console.log(user)
+  // console.log(loadingUser)
+  // console.log(user)
 
 
   return (

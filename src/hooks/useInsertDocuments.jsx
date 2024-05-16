@@ -29,7 +29,7 @@ const insertReducer = (state, action) => {
 
 export const useInsertDocuments = (docCollection) => {
 
-    console.log('Entrou no useInsertDocument')
+    // console.log('Entrou no useInsertDocument')
 
     const [response, dispatch] = useReducer(insertReducer, initialState);
 
@@ -45,7 +45,7 @@ export const useInsertDocuments = (docCollection) => {
 
     const insertDocument = async (document) => {
 
-        console.log('documentos:', document)
+        // console.log('documentos:', document)
 
         checkCancelBeforeDispatch({
             type:'LOADING'
@@ -55,7 +55,7 @@ export const useInsertDocuments = (docCollection) => {
             
             const newDocument = {...document, createdAt: Timestamp.now()}
 
-            console.log(newDocument)
+            // console.log(newDocument)
 
             const insertDocument = await addDoc(
                 collection(db, docCollection), 
@@ -70,7 +70,7 @@ export const useInsertDocuments = (docCollection) => {
 
         } catch (error) {
 
-            console.log('erro use Insert: ', error.message)
+            // console.log('erro use Insert: ', error.message)
 
             checkCancelBeforeDispatch({
                 type: 'ERROR',

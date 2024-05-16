@@ -22,7 +22,7 @@ const SubMenu = () => {
     //Passando usuário logado
     const user = useAuthValue() || "";
 
-    console.log(user)
+    // console.log(user)
 
     //Função para fazer o logout sing in do sistema
     const { logout } = useAuthentication() ;

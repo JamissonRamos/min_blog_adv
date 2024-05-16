@@ -18,15 +18,15 @@ const Dashboard = () => {
     const user  = useAuthValue();
     const uid = user ? user.uid : null;
 
-    console.log(uid)
-    console.log(user)
+    // console.log(uid)
+    // console.log(user)
 
     //const posts = []
 
     const {documents: posts, error, loading } = useFetchDocuments("posts", null, uid)
     const { deleteDocument, response } = useDeleteDocuments("posts")
 
-    console.log(posts)
+    // console.log(posts)
 
     if(loading || response.loading){
         

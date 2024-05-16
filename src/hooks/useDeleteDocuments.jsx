@@ -29,7 +29,7 @@ const deleteReducer = (state, action) => {
 
 export const useDeleteDocuments = (docCollection) => {
 
-    console.log('Entrou no useInsertDocument')
+    // console.log('Entrou no useInsertDocument')
 
     const [response, dispatch] = useReducer(deleteReducer, initialState);
 
@@ -60,7 +60,7 @@ export const useDeleteDocuments = (docCollection) => {
 
         } catch (error) {
 
-            console.log('erro use Insert: ', error.message)
+            // console.log('erro use Insert: ', error.message)
 
             checkCancelBeforeDispatch({
                 type: 'ERROR',

@@ -19,14 +19,15 @@ import { Button, Alert } from '@mui/material';
 import { useAuthValue } from '../../context/AuthContext'
 
 //Hooks
-import { useInsertDocuments } from '../../hooks/useInsertDocuments';
+import { useFetchDocument } from '../../hooks/useFetchDocument';
+import { useUpdateDocument } from '../../hooks/useUpdateDocument';
+
 
 //Components
 import LineProgress from '../../components/line-progress/LineProgress'
 import TitleForm from '../../components/components-form/TitleForm';
 import DescriptionForm from '../../components/components-form/DescriptionForm';
 import InputText from '../../components/components-form/InputText';
-import { useFetchDocument } from '../../hooks/useFetchDocument';
 import { useEffect } from 'react';
 
 
@@ -36,8 +37,11 @@ const schema = Yup.object().shape({
     body:Yup.string().min(6, 'Campo tem quer ter no mínimo 6 caracteres').required('Campo Obrigatório'),
     // tags:Yup.string().required('Campo Obrigatório').split('; ').map(tag => `#${tag.toUpperCase()}`).join(';') ,
     tags: Yup.string().transform(value => {
-        const tagsArray = value.split('; ').map(tag => `${tag.trim().toLowerCase().replace(/ /g, '')}`); // Remove todos os espaços em branco 
+        if (typeof value === 'string') {
+            const tagsArray = value.split('; ').map(tag => `${tag.trim().toLowerCase().replace(/ /g, '')}`);
             return tagsArray.join(';');
+        }
+        return '';
     }).required('Campo Obrigatório')
 })
 
@@ -54,10 +58,11 @@ const EditPost = () => {
     const user = useAuthValue();
     const navigate = useNavigate();
 
-    const { insertDocument, response } = useInsertDocuments("posts"); // error: authError
+
+    const { updateDocument, response } = useUpdateDocument("posts")
     const  { document: post, loading, error: errorLoadingDocument } = useFetchDocument("posts", idParams)
 
-    console.log(post);
+    // console.log(post);
 
     // const [errorRequest, setErrorRequest] = useState('');
 
@@ -78,13 +83,12 @@ const EditPost = () => {
     {
         const tagsArray = data.tags.split(';').map(tag => tag.trim());
 
-        await insertDocument({
-            data: {
+        await updateDocument({
+            uid: idParams,
+            // data: {
                 ...data,
                 tags: tagsArray
-                },
-            uid: user.uid,
-            createdBy: user.displayName,
+                // },
             });
     
         
@@ -95,11 +99,11 @@ const EditPost = () => {
     };
 
     // Adicione o useEffect aqui
-useEffect(() => {
-    if (post) {
-        reset(post.data);
-    }
-}, [post, reset]);
+    useEffect(() => {
+        if (post) {
+            reset(post.data);
+        }
+    }, [post, reset]);
 
     return (
 
@@ -150,7 +154,7 @@ useEffect(() => {
 
                     {
                         componentsForm.map(({id, typeComponent, nameComponent, label, placeholder}) => (
-
+                            
                             <div className={styles.boxInput} key={id}>
 
                                 <div className={styles.boxContainerInput}>
@@ -164,6 +168,15 @@ useEffect(() => {
                                             typeComponent={typeComponent}
                                             control={control}
                                         />
+
+                                        {
+                                            post && nameComponent === "image" ? 
+                                                <div className={styles.headerCard}>
+
+                                                    <img className={styles.headerCardImg} src={post.data.image} alt={post.data.title} />
+        
+                                                </div> : null
+                                        }
 
                                     </div>
                                     
