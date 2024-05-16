@@ -100,7 +100,7 @@ const Dashboard = () => {
                                             <div className={styles.tableRow} key={post.id} >
 
                                                 <p className={styles.rowBody}>
-                                                    {post.data.title}
+                                                    {post.title}
                                                 </p>
         
                                                 <div className={styles.footer}>

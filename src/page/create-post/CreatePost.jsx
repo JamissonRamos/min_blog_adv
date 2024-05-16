@@ -72,10 +72,10 @@ const CreatePost = () => {
         const tagsArray = data.tags.split(';').map(tag => tag.trim());
 
         await insertDocument({
-            data: {
+            //data: {
                 ...data,
-                tags: tagsArray
-                },
+                tags: tagsArray,
+                //},
             uid: user.uid,
             createdBy: user.displayName,
             });

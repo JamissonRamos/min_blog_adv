@@ -30,7 +30,12 @@ const Blog = ({posts}) => {
 
                                 <div className={styles.cardHeader}>
 
-                                    <img src={post.data.image && post.data.image} alt={post.data.title} className={styles.fotoPost}/>
+                                    
+                                    {
+                                        post &&  <img src={post.image} alt={post.title} className={styles.fotoPost}/>
+                                    }
+                                    
+                                   
                                 
                                 </div>
                                 
@@ -50,7 +55,7 @@ const Blog = ({posts}) => {
                                             }}  
                                                 variant="subtitle1"
                                         >
-                                            {post.data.title}
+                                            {post.title}
                                         </Typography>
 
                                     </div>
@@ -67,7 +72,7 @@ const Blog = ({posts}) => {
                                                 }}                                      
                                             >
 
-                                                {post.data.body}
+                                                {post.body}
 
                                         </Typography>
 
@@ -76,9 +81,9 @@ const Blog = ({posts}) => {
                                     
                                     <div className={styles.tags}>
                                         {
-                                            Array.isArray(post.data.tags) && 
+                                            Array.isArray(post.tags) && 
 
-                                                post.data.tags.map((tag, id) => (
+                                                post.tags.map((tag, id) => (
 
                                                     <span key={id}> {tag} </span>
                                                 ))

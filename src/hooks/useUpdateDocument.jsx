@@ -35,7 +35,7 @@ export const useUpdateDocument = (docCollection) => {
     }
   };
 
-  const updateDocument = async ({data, uid} ) => {
+  const updateDocument = async (data, uid ) => {
     console.log(uid)
     console.log(data)
     
@@ -45,10 +45,9 @@ export const useUpdateDocument = (docCollection) => {
       const docRef = await doc(db, docCollection, uid);
 
       console.log(docRef);
+      console.log(data);
 
       const updatedDocument = await updateDoc(docRef, data);
-
-      console.log(updateDocument);
 
       checkCancelBeforeDispatch({
         type: "UPDATED_DOC",

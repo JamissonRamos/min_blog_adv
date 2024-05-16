@@ -41,19 +41,19 @@ const Post = () => {
 
                             <div className={styles.contentTitlePostNameUser}>
 
-                                <TitleForm> {post.data.title} </TitleForm>
+                                <TitleForm> {post.title} </TitleForm>
                                 
                             </div>
                 
                             <div className={styles.ImgPost}>
                                 { 
-                                    <img src={post.data.image} alt={post.data.title}  /> 
+                                    <img src={post.image} alt={post.title}  /> 
                                 }
                             </div>
                             <div className={styles.Post}>
                                 { 
                                     <p>
-                                        {post.data.body}
+                                        {post.body}
                                     </p>
                                 }
                             </div>
@@ -64,9 +64,9 @@ const Post = () => {
                                 
                                 <div className={styles.tags}>
                                     {
-                                        Array.isArray(post.data.tags) && 
+                                        Array.isArray(post.tags) && 
 
-                                            post.data.tags.map((tag, id) => (
+                                            post.tags.map((tag, id) => (
 
                                                 <span key={id}> #{tag} </span>
                                             ))

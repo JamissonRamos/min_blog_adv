@@ -83,13 +83,23 @@ const EditPost = () => {
     {
         const tagsArray = data.tags.split(';').map(tag => tag.trim());
 
-        await updateDocument({
-            uid: idParams,
+        //await updateDocument({
             // data: {
-                ...data,
-                tags: tagsArray
-                // },
-            });
+            //     ...data,
+            //     tags: tagsArray
+            //     },
+            // uid: user.uid,
+            // createdBy: user.displayName,
+           // });
+
+           const dados = {
+            ...data,
+            tags: tagsArray,
+            //uid: user.uid,
+            //createdBy: user.displayName,
+            }
+
+           await updateDocument(dados, idParams);
     
         
             reset();
@@ -101,7 +111,7 @@ const EditPost = () => {
     // Adicione o useEffect aqui
     useEffect(() => {
         if (post) {
-            reset(post.data);
+            reset(post);
         }
     }, [post, reset]);
 
@@ -173,7 +183,7 @@ const EditPost = () => {
                                             post && nameComponent === "image" ? 
                                                 <div className={styles.headerCard}>
 
-                                                    <img className={styles.headerCardImg} src={post.data.image} alt={post.data.title} />
+                                                    <img className={styles.headerCardImg} src={post.image} alt={post.title} />
         
                                                 </div> : null
                                         }

@@ -27,7 +27,7 @@ const PostDetail = ({posts}) => {
 
                                 <div className={styles.headerCard}>
 
-                                    <img className={styles.headerCardImg} src={post.data.image} alt={post.data.title} />
+                                    <img className={styles.headerCardImg} src={post.image} alt={post.title} />
 
                                 </div>
 
@@ -47,7 +47,7 @@ const PostDetail = ({posts}) => {
                                             }}  
                                                 variant="subtitle1"
                                         >
-                                            {post.data.title}
+                                            {post.title}
                                         </Typography>
 
                                     </div>
@@ -63,7 +63,7 @@ const PostDetail = ({posts}) => {
                                                     WebkitBoxOrient: 'vertical'
                                                 }}                                      
                                             >
-                                                {post.data.body}
+                                                {post.body}
 
                                         </Typography>
 
@@ -89,9 +89,9 @@ const PostDetail = ({posts}) => {
 
                                     
                                         {
-                                            Array.isArray(post.data.tags) && 
+                                            Array.isArray(post.tags) && 
 
-                                                post.data.tags.map((tag, id) => (
+                                                post.tags.map((tag, id) => (
 
                                                     <span key={id}> {tag} </span>
                                                 ))

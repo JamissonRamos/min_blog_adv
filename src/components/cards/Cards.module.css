@@ -20,8 +20,8 @@
 
     max-width:  250px;
     min-width: 200px;
-    height: 280px;
-    max-height: 280px;
+    height: 300px;
+    max-height: 580px;
 
     display: flex;
     flex-direction: column;

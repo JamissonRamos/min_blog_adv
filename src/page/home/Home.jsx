@@ -110,7 +110,7 @@ const Home = () => {
                     
                 </div>
 
-                <div>home-footer</div>
+                {/* <div>home-footer</div> */}
                 
                 
             </div>
