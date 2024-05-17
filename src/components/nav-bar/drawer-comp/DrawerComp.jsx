@@ -42,7 +42,7 @@
                             {
                                 pages.map(({id, page, icon, linkPage}) => (
 
-                                    <>
+                                    <div key={id}>
                                         <ListItemButton key={id} sx={{display:'flex', alignItems:'center'}} onClick={() => setOpenDrawer(!openDrawer)} component={Link} to={linkPage}>
 
                                             <ListItemIcon sx={{ color: 'var(--cinza-500)', fontSize: "1.5rem" }}>
@@ -65,7 +65,7 @@
 
                                         </ListItemButton>
                                     
-                                    </>
+                                    </div>
 
                                 ))
                             }
